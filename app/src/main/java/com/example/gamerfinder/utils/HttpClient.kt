@@ -12,7 +12,7 @@ private val client = OkHttpClient()
 fun run() {
     thread {
         val request = Request.Builder()
-            .url("http://10.0.1.30:1337/api/tests")
+            .url("http://${Configs.serverIp}:1337/api/tests")
             .build()
         client.newCall(request).execute().use { response ->
             if (!response.isSuccessful) throw IOException("Unexpected code $response")

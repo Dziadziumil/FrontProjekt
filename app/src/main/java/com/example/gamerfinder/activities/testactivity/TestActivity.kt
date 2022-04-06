@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.gamerfinder.R
+import com.example.gamerfinder.utils.Configs
 import com.example.gamerfinder.utils.run
 
 class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Configs.initProperties(this)
         setContentView(R.layout.activity_test)
     }
 
