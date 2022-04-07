@@ -7,7 +7,8 @@ import java.util.*
 
 object Configs {
     enum class EKey(val value: String) {
-        SERVER_IP("server_ip")
+        SERVER_IP("server_ip"),
+        SERVER_PORT("server_port")
     }
 
     private var properties: Properties = Properties()
@@ -24,9 +25,15 @@ object Configs {
 
     val serverIp: String by lazy {
         runCatching {
-            return@lazy get(EKey.SERVER_IP) ?: "127.0.0.1"
+            return@lazy get(EKey.SERVER_IP)?.trim() ?: "127.0.0.1"
         }
         "127.0.0.1"
+    }
+    val serverPort: String by lazy {
+        runCatching {
+            return@lazy get(EKey.SERVER_PORT)?.trim() ?: "1337"
+        }
+        "1337"
     }
 
 }
