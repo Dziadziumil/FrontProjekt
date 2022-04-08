@@ -6,9 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gamerfinder.R
-import com.example.gamerfinder.activities.testactivity.Listener.Action
-import com.example.gamerfinder.utils.Configs
-import com.example.gamerfinder.utils.UserGet
+import com.example.gamerfinder.utils.*
+import java.util.*
 
 
 class TestActivity : AppCompatActivity() {
@@ -20,32 +19,27 @@ class TestActivity : AppCompatActivity() {
 
     fun buttonClick(v: View) {
 
-        val event = Listener().apply {
-            this.setActionListener(object : Action {
-                override fun invoke(value: String?) {
-                    Looper.prepare()
-                    val toast = Toast.makeText(baseContext, value, Toast.LENGTH_SHORT)
-                    toast.show()
-                    println(value)
-                    Looper.loop()
-                }
-            })
-        }
+        val get = HttpGet.TestsGet
+        val event = HttpListener(object : Action {
+            override fun onMessage(value: Any?) {
+                Looper.prepare()
+                val result = (value as ResponseModels.TestsClass).data?.firstOrNull()?.attributes
+                val toast = Toast.makeText(
+                    applicationContext,
+                    "got a result of: ${result?.testNumber} and ${
+                        result?.testColumn?.uppercase(
+                            Locale.getDefault()
+                        )
+                    }",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+                println(value)
+                Looper.loop()
+            }
+        })
 
-        UserGet().getRequest(event)
+        get.request(event)
     }
 }
 
-
-class Listener {
-
-    var listener: Action? = null
-
-    fun setActionListener(listener: Action?) {
-        this.listener = listener
-    }
-
-    interface Action {
-        fun invoke(value: String?)
-    }
-}

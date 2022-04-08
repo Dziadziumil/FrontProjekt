@@ -1,29 +1,24 @@
 package com.example.gamerfinder.utils
 
-import android.graphics.Bitmap
-import com.example.gamerfinder.activities.testactivity.Listener
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
 import kotlin.concurrent.thread
 
 
-private val client = OkHttpClient()
-
 annotation class Api(val path: String)
 
-@Api("tests")
-class UserGet : ApiClient()
+open class ApiClient(val serializer: KSerializer<*>) {
 
-
-open class ApiClient {
-    fun getRequest(event: Listener) {
+    fun request(event: HttpListener) {
         val apiUrl = (this.javaClass.annotations.find { it is Api } as Api).path
         thread {
             val request = Request.Builder()
                 .url("http://${Configs.serverIp}:${Configs.serverPort}/api/${apiUrl}")
                 .build()
-            client.newCall(request).execute().use { response ->
+            OkHttpClient().newCall(request).execute().use { response ->
                 if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
                 for ((name, value) in response.headers) {
@@ -31,9 +26,16 @@ open class ApiClient {
                 }
 
                 val rsp = response.body!!.string()
-                event.listener?.let {
-                    it.invoke(rsp)
+                val json = Json {
+                    ignoreUnknownKeys = true
+                    isLenient = true
+                    prettyPrint = false
+                    allowStructuredMapKeys = true
                 }
+
+                val jsonrsp = json.decodeFromString(serializer, rsp)
+                event.listener.onMessage(jsonrsp)
+
 
             }
         }
