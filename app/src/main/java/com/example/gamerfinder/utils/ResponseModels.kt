@@ -15,6 +15,9 @@ sealed class ResponseModels {
         }
     }
 
+    @Serializable
+    class UsersClass
+
 }
 
 @Serializable
