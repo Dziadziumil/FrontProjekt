@@ -6,7 +6,7 @@ import java.io.IOException
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
-class LoginDataSource {
+class LoginDataSourceOg {
 
     fun login(username: String, password: String): Result<LoggedInUser> {
         try {

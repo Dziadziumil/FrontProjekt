@@ -2,8 +2,8 @@ package com.example.gamerfinder.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.gamerfinder.data.LoginDataSource
-import com.example.gamerfinder.data.LoginRepository
+import com.example.gamerfinder.data.LoginDataSourceOg
+import com.example.gamerfinder.data.LoginRepositoryOg
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
@@ -13,10 +13,10 @@ class LoginViewModelFactory : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(
-                    loginRepository = LoginRepository(
-                            dataSource = LoginDataSource()
+        if (modelClass.isAssignableFrom(LoginViewModelOg::class.java)) {
+            return LoginViewModelOg(
+                    loginRepositoryOg = LoginRepositoryOg(
+                            dataSourceOg = LoginDataSourceOg()
                     )
             ) as T
         }
