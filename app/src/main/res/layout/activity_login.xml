@@ -19,14 +19,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username_input"
+        android:id="@+id/username_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/default_padding"
         app:layout_constraintTop_toBottomOf="@id/app_name_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:errorEnabled="true" >
+        app:startIconDrawable="@drawable/ic_account_box"
+        app:errorEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username_edit_text"
@@ -38,15 +40,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_input"
+        android:id="@+id/password_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
-        app:layout_constraintTop_toBottomOf="@id/username_input"
+        app:layout_constraintTop_toBottomOf="@id/username_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:endIconMode="password_toggle"
-        app:errorEnabled="true" >
+        app:startIconDrawable="@drawable/ic_password_outline"
+        app:errorEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_edit_text"
@@ -64,8 +68,8 @@
         android:text="@string/login"
         android:layout_marginTop="@dimen/default_padding"
         android:paddingVertical="@dimen/default_padding"
-        app:layout_constraintTop_toBottomOf="@id/password_input"
+        app:layout_constraintTop_toBottomOf="@id/password_layout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

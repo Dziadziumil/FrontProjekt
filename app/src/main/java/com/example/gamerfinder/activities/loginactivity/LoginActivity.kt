@@ -28,10 +28,14 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.loginStatus.observe(this, Observer {
             if(it.usernameError != null) {
-                username.error = getString(it.usernameError)
+                binding.usernameLayout.error = getString(it.usernameError)
             }
             if(it.passwordError != null){
-                password.error = getString(it.passwordError)
+                binding.passwordLayout.error = getString(it.passwordError)
+            }
+            if(it.isDataValid) {
+                binding.passwordLayout.error = null
+                binding.usernameLayout.error = null
             }
         })
 
