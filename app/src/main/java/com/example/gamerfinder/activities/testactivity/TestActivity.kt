@@ -1,11 +1,14 @@
 package com.example.gamerfinder.activities.testactivity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gamerfinder.R
+import com.example.gamerfinder.ui.profile.profileMyProfile
+import com.example.gamerfinder.ui.profile.profileView
 import com.example.gamerfinder.utils.*
 import java.util.*
 
@@ -40,6 +43,17 @@ class TestActivity : AppCompatActivity() {
         })
 
         get.request(event)
+    }
+
+    fun buttonClickToProfile(v: View)
+    {
+        val activity2Intent = Intent(applicationContext, profileView::class.java)
+        startActivity(activity2Intent)
+    }
+    fun buttonClickToMyProfile(v: View)
+    {
+        val activity2Intent = Intent(applicationContext, profileMyProfile::class.java)
+        startActivity(activity2Intent)
     }
 }
 
