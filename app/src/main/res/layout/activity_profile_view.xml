@@ -28,7 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/_06_2069926_google_chrome_incognito_mode_detection_incognito_logo_hd"
         tools:srcCompat="@tools:sample/avatars"
         tools:visibility="visible" />
 
