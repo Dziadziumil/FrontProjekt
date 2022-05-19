@@ -12,7 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GamerFinder"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".activities.registeractivity.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.profile.MyProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.profile.MyProfileEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.profile.ExtProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.loginactivity.LoginActivity"
             android:exported="true">

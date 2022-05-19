@@ -7,8 +7,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gamerfinder.R
-import com.example.gamerfinder.ui.profile.profileMyProfile
-import com.example.gamerfinder.ui.profile.profileView
+import com.example.gamerfinder.activities.profile.MyProfileActivity
+import com.example.gamerfinder.activities.profile.ExtProfileActivity
 import com.example.gamerfinder.utils.*
 import java.util.*
 
@@ -47,12 +47,12 @@ class TestActivity : AppCompatActivity() {
 
     fun buttonClickToProfile(v: View)
     {
-        val activity2Intent = Intent(applicationContext, profileView::class.java)
+        val activity2Intent = Intent(applicationContext, ExtProfileActivity::class.java)
         startActivity(activity2Intent)
     }
     fun buttonClickToMyProfile(v: View)
     {
-        val activity2Intent = Intent(applicationContext, profileMyProfile::class.java)
+        val activity2Intent = Intent(applicationContext, MyProfileActivity::class.java)
         startActivity(activity2Intent)
     }
 }

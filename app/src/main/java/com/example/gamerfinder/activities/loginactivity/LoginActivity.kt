@@ -1,12 +1,10 @@
 package com.example.gamerfinder.activities.loginactivity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.gamerfinder.R
-import com.example.gamerfinder.activities.testactivity.TestActivity
 import com.example.gamerfinder.databinding.ActivityLoginBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -51,11 +49,5 @@ class LoginActivity : AppCompatActivity() {
                 //TODO: handle error
             }
         })
-
-        binding.gotoTestActivity.setOnClickListener {
-            val context = it.context
-            val intent = Intent(context, TestActivity::class.java)
-            context.startActivity(intent)
-        }
     }
 }
