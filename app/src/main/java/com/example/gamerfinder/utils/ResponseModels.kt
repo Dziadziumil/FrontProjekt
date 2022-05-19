@@ -1,7 +1,11 @@
+@file:UseSerializers(StringNullableDateTimeSerializer::class)
+
 package com.example.gamerfinder.utils
 
+import kotlinx.serialization.UseSerializers
+
 import kotlinx.serialization.Serializable
-import kotlin.reflect.KClassifier
+import org.joda.time.DateTime
 
 
 sealed class ResponseModels {
@@ -16,8 +20,25 @@ sealed class ResponseModels {
     }
 
     @Serializable
-    class UsersClass
+    class UsersClass(
+        val users: List<UserEntity>
+    )
 
+}
+
+@Serializable
+class UserEntity(
+    val id: Int?,
+    val firstName: String?,
+    val secondName: String?,
+    val birthDate: DateTime?,
+    val phone: Int?,
+    val email: String?,
+    val passwordHash: String?
+) {
+    override fun toString(): String {
+        return "UserEntity(id=$id, firstName=$firstName, secondName=$secondName, birthDate=$birthDate, phone=$phone, email=$email, passwordHash=$passwordHash)"
+    }
 }
 
 @Serializable
@@ -41,4 +62,8 @@ class AttributesTests(
     override fun toString(): String {
         return "AttributesTests(testColumn=$testColumn, testNumber=$testNumber, createdAt=$createdAt, updatedAt=$updatedAt, publishedAt=$publishedAt)"
     }
+
+
+
+
 }

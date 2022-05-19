@@ -27,31 +27,38 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener {
             when {
-                binding.personName.length() < 2 || !namePattern.containsMatchIn(binding.personName.text) -> {
-                    Toast.makeText(this, "Wrong user's Name.", Toast.LENGTH_LONG).show()
+                binding.personName.length() < 2 || !namePattern.containsMatchIn(binding.personName.text.toString()) -> {
+                    binding.personNameLayout.error = "Wrong user's Name."
+                    //Toast.makeText(this, "Wrong user's Name.", Toast.LENGTH_LONG).show()
                 }
-                binding.personSurname.length() < 2 || !namePattern.containsMatchIn(binding.personSurname.text) -> {
+                binding.personSurname.length() < 2 || !namePattern.containsMatchIn(binding.personSurname.text.toString()) -> {
                     Toast.makeText(this, "Wrong user's Surname.", Toast.LENGTH_LONG).show()
                 }
-                binding.nickName.text.isEmpty() -> {
-                    Toast.makeText(this, "Please tell us how we should call you.", Toast.LENGTH_LONG).show()
+                binding.username.text.isNullOrEmpty() -> {
+                    Toast.makeText(
+                        this,
+                        "Please tell us how we should call you.",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-                binding.nickName.length() < 4 -> {
+                binding.username.length() < 4 -> {
                     Toast.makeText(this, "Nickname is too short.", Toast.LENGTH_LONG).show()
                 }
-                !emailPattern.containsMatchIn(binding.personEmail.text) -> {
-                    Toast.makeText(this, "Please enter correct email address.", Toast.LENGTH_LONG).show()
+                !emailPattern.containsMatchIn(binding.personEmail.text.toString()) -> {
+                    Toast.makeText(this, "Please enter correct email address.", Toast.LENGTH_LONG)
+                        .show()
                 }
                 cYear - binding.personBirth.year < 13 -> {
-                    Toast.makeText(this, "You must be at least 13 years old.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "You must be at least 13 years old.", Toast.LENGTH_LONG)
+                        .show()
                 }
                 binding.password.length() < 6 -> {
                     Toast.makeText(this, "Password is too short.", Toast.LENGTH_LONG).show()
                 }
-                binding.passwordRetype.length() < 6 -> {
+                binding.confirmPassword.length() < 6 -> {
                     Toast.makeText(this, "Please retype your password.", Toast.LENGTH_LONG).show()
                 }
-                binding.password.text.toString() != binding.passwordRetype.text.toString() -> {
+                binding.password.text.toString() != binding.confirmPassword.text.toString() -> {
                     Toast.makeText(this, "Wrong password's retype.", Toast.LENGTH_LONG).show()
                 }
                 !binding.buttonFemale.isChecked && !binding.buttonMale.isChecked && !binding.buttonOther.isChecked -> {

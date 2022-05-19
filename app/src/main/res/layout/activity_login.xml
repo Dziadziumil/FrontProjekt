@@ -87,4 +87,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_button" />
 
+    <Button
+        android:id="@+id/test_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/default_padding"
+        android:text="test"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="587dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
