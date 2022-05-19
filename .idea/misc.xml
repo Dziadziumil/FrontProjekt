@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DANE/Documents/programowanie/FrontProjekt/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/DANE/Documents/programowanie/FrontProjekt/app/src/main/res/layout/activity_profile_my_profile.xml" value="0.1" />
         <entry key="..\:/DANE/Documents/programowanie/FrontProjekt/app/src/main/res/layout/activity_profile_my_profile_edit.xml" value="0.22826086956521738" />
         <entry key="..\:/DANE/Documents/programowanie/FrontProjekt/app/src/main/res/layout/activity_profile_view.xml" value="0.22826086956521738" />
+        <entry key="..\:/DANE/Documents/programowanie/FrontProjekt/app/src/main/res/layout/activity_register.xml" value="0.2556008146639511" />
         <entry key="..\:/DANE/Documents/programowanie/FrontProjekt/app/src/main/res/layout/activity_test.xml" value="0.36096014492753625" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/font/rubik.xml" value="0.35794871794871796" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/font/rubik_medium.xml" value="0.3074074074074074" />

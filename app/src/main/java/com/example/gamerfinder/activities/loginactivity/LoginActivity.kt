@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.gamerfinder.databinding.ActivityLoginBinding
 import com.example.gamerfinder.activities.profile.MyProfileActivity
+import com.example.gamerfinder.activities.registeractivity.RegisterActivity
 import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity() {
@@ -52,6 +53,13 @@ class LoginActivity : AppCompatActivity() {
                 //TODO: handle error
             }
         })
+
+        binding.noAccountButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
     fun handleLoginSuccess() {

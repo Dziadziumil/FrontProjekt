@@ -8,17 +8,22 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="411dp"
-        android:layout_height="891dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:contextClickable="false"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <EditText
                 android:id="@+id/personName"
@@ -29,25 +34,28 @@
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:hint="Name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/personSurname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
+
                 android:ems="10"
                 android:hint="Surname"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
             <RadioGroup
                 android:id="@+id/genderButtons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
                 android:layout_marginEnd="32dp"
                 tools:visibility="visible">
 
@@ -77,45 +85,55 @@
                     android:layout_height="wrap_content"
                     android:text="Other" />
             </RadioGroup>
-
+            <TextView
+                android:id="@+id/labelAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="Choose your date of birth" />
             <DatePicker
                 android:id="@+id/personBirth"
-                android:layout_width="wrap_content"
+                android:layout_width="345dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"
                 android:spinnersShown="true"
-                android:translationX="32dp" />
+
+                android:translationX="32dp"/>
 
             <EditText
                 android:id="@+id/personPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:hint="Phone Number*"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/nickName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:hint="Nickname"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/personEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress" />
@@ -125,7 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:hint="Password"
@@ -136,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:hint="Re-type Password"
@@ -147,6 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="32dp"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
                 android:text="I accept the terms of service" />
 
             <Button
@@ -154,6 +173,7 @@
                 android:layout_width="128dp"
                 android:layout_height="64dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
                 android:text="Register"
                 android:textAlignment="center"
                 android:visibility="visible"
