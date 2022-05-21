@@ -1,4 +1,4 @@
-package com.example.gamerfinder
+package com.example.gamerfinder.fragments.loginsingup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,6 +30,11 @@ class StartFragment : Fragment() {
 
         binding.chooseLoginButton.setOnClickListener {
             val action = StartFragmentDirections.actionStartFragmentToLoginFragment()
+            view.findNavController().navigate(action)
+        }
+
+        binding.chooseSignupButton.setOnClickListener {
+            val action = StartFragmentDirections.actionStartFragmentToSignupFragment()
             view.findNavController().navigate(action)
         }
     }

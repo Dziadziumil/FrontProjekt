@@ -3,11 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/testFragment">
+    app:startDestination="@id/myProfileFragment">
 
     <fragment
         android:id="@+id/testFragment"
         android:name="com.example.gamerfinder.TestFragment"
         android:label="fragment_test"
         tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.example.gamerfinder.fragments.profile.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" >
+        <action
+            android:id="@+id/action_myProfileFragment_to_myProfileEditFragment"
+            app:destination="@id/myProfileEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myProfileEditFragment"
+        android:name="com.example.gamerfinder.fragments.profile.MyProfileEditFragment"
+        android:label="fragment_my_profile_edit"
+        tools:layout="@layout/fragment_my_profile_edit" />
+    <fragment
+        android:id="@+id/extProfileFragment"
+        android:name="com.example.gamerfinder.fragments.profile.ExtProfileFragment"
+        android:label="fragment_ext_profile"
+        tools:layout="@layout/fragment_ext_profile" />
 </navigation>
