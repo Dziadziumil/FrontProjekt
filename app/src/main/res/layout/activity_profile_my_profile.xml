@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0C001A"
-    tools:context=".ui.profile.profileMyProfile">
+    tools:context=".activities.profile.MyProfileActivity">
 
     <ImageView
         android:id="@+id/imageView2"
