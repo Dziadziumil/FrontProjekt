@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,11 +47,11 @@ class LoginFragment : Fragment() {
 
         binding.testButton.setOnClickListener {
             val get = HttpGet.UsersGet
-            val event = HttpListener(object : Action {
-                override fun onMessage(value: Any?) {
+            val event = HttpListener(object : Action<List<UserEntity>> {
+                override fun onMessage(value: List<UserEntity>?) {
                     Looper.prepare()
                     val result =
-                        value as ResponseModels.UsersClass
+                        value as List<UserEntity>
                     val toast = Toast.makeText(
                         context,
                         "got a result of: $result",
