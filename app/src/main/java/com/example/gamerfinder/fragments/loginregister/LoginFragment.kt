@@ -1,4 +1,4 @@
-package com.example.gamerfinder.fragments.loginsingup
+package com.example.gamerfinder.fragments.loginregister
 
 import android.content.Intent
 import android.os.Bundle

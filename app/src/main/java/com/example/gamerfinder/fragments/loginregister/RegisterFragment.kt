@@ -1,4 +1,4 @@
-package com.example.gamerfinder.fragments.loginsingup
+package com.example.gamerfinder.fragments.loginregister
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.gamerfinder.R
 import com.example.gamerfinder.databinding.FragmentSignupBinding
 import java.util.*
 
-class SignupFragment : Fragment() {
+class RegisterFragment : Fragment() {
 
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!

@@ -14,12 +14,17 @@
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/font/rubik_medium.xml" value="0.3074074074074074" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_profile_my_profile.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_profile_my_profile_edit.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_profile_view.xml" value="0.16210739614994935" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_register.xml" value="0.26268115942028986" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_test.xml" value="0.26268115942028986" />
+        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_ext_profile.xml" value="0.26268115942028986" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_my_profile.xml" value="0.26268115942028986" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_my_profile_edit.xml" value="0.26268115942028986" />
+        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_register.xml" value="0.26268115942028986" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_signup.xml" value="0.26268115942028986" />
+        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_test.xml" value="0.33" />
       </map>
     </option>
   </component>

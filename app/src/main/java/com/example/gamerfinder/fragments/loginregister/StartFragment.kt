@@ -1,4 +1,4 @@
-package com.example.gamerfinder.fragments.loginsingup
+package com.example.gamerfinder.fragments.loginregister
 
 import android.os.Bundle
 import android.view.LayoutInflater
