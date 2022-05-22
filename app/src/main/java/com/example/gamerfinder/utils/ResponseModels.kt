@@ -27,11 +27,11 @@ sealed class ResponseModels {
 }
 
 @Serializable
-class UserEntity(
+data class UserEntity(
     val id: Int?,
     val firstName: String?,
     val secondName: String?,
-    val birthDate: DateTime?,
+    val birthDate: String?,
     val phone: Int?,
     val email: String?,
     val passwordHash: String?

@@ -23,10 +23,10 @@ class TestActivity : AppCompatActivity() {
     fun buttonClick(v: View) {
 
         val get = HttpGet.TestsGet
-        val event = HttpListener(object : Action {
-            override fun onMessage(value: Any?) {
+        val event = HttpListener(object : Action<ResponseModels.TestsClass> {
+            override fun onMessage(value: ResponseModels.TestsClass?) {
                 Looper.prepare()
-                val result = (value as ResponseModels.TestsClass).data?.firstOrNull()?.attributes
+                val result = value?.data?.firstOrNull()?.attributes
                 val toast = Toast.makeText(
                     applicationContext,
                     "got a result of: ${result?.testNumber} and ${

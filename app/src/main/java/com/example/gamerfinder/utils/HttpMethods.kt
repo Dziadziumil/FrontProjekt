@@ -1,6 +1,9 @@
 package com.example.gamerfinder.utils
 
-import kotlinx.serialization.KSerializer
+import com.example.gamerfinder.activities.loginactivity.User
+import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.serializer
 
 sealed class HttpGet {
 
@@ -11,5 +14,5 @@ sealed class HttpGet {
 
     @Api("users")
     object UsersGet :
-        ApiClient(ResponseModels.UsersClass.serializer())
+        ApiClient(ListSerializer(UserEntity.serializer()))
 }
