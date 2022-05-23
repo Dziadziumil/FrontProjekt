@@ -5,7 +5,6 @@ package com.example.gamerfinder.utils
 import kotlinx.serialization.UseSerializers
 
 import kotlinx.serialization.Serializable
-import org.joda.time.DateTime
 
 
 sealed class ResponseModels {
@@ -20,26 +19,49 @@ sealed class ResponseModels {
     }
 
     @Serializable
-    class UsersClass(
-        val users: List<UserEntity>
-    )
-
-}
-
-@Serializable
-data class UserEntity(
-    val id: Int?,
-    val firstName: String?,
-    val secondName: String?,
-    val birthDate: String?,
-    val phone: Int?,
-    val email: String?,
-    val passwordHash: String?
-) {
-    override fun toString(): String {
-        return "UserEntity(id=$id, firstName=$firstName, secondName=$secondName, birthDate=$birthDate, phone=$phone, email=$email, passwordHash=$passwordHash)"
+    data class UserFull(
+        val id: Int?,
+        val userName: String?,
+        val firstName: String?,
+        val secondName: String?,
+        val birthDate: String?,
+        val email: String?,
+        val gender: String?
+    ) {
+        override fun toString(): String {
+            return "UserFull(id=$id, userName=$userName, firstName=$firstName, secondName=$secondName, birthDate=$birthDate, email=$email, gender=$gender)"
+        }
     }
+
+    @Serializable
+    data class AuthResponse(
+        val id: Int?,
+        val token: String?
+    ) {
+        override fun toString(): String {
+            return "RegisterResponse(id=$id, token=$token)"
+        }
+    }
+
 }
+
+
+class RequestModels {
+
+    @Serializable
+    data class AuthRequest(
+        val UserEmail: String?,
+        val PasswordHash: String?
+    ) : BaseModel() {
+        override fun toString(): String {
+            return "AuthRequest(UserEmail=$UserEmail, PasswordHash=$PasswordHash)"
+        }
+    }
+
+    @Serializable
+    sealed class BaseModel
+}
+
 
 @Serializable
 class testsPair(
@@ -49,6 +71,8 @@ class testsPair(
     override fun toString(): String {
         return "testsPair(id=$id, attributes=$attributes)"
     }
+
+
 }
 
 @Serializable
@@ -62,8 +86,6 @@ class AttributesTests(
     override fun toString(): String {
         return "AttributesTests(testColumn=$testColumn, testNumber=$testNumber, createdAt=$createdAt, updatedAt=$updatedAt, publishedAt=$publishedAt)"
     }
-
-
 
 
 }

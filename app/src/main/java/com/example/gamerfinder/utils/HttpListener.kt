@@ -9,5 +9,5 @@ class HttpListener<T>(var listener: Action<T>) {
 }
 
 interface Action<T> {
-    fun onMessage(value: T?)
+    fun onMessage(isSuccess: Boolean, value: T?)
 }

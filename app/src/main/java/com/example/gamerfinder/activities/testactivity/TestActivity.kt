@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.gamerfinder.R
 import com.example.gamerfinder.activities.profile.MyProfileActivity
 import com.example.gamerfinder.activities.profile.ExtProfileActivity
+import com.example.gamerfinder.data.Result
 import com.example.gamerfinder.utils.*
 import java.util.*
 
@@ -22,9 +23,9 @@ class TestActivity : AppCompatActivity() {
 
     fun buttonClick(v: View) {
 
-        val get = HttpGet.TestsGet
+       // val get = HttpGet.TestsGet
         val event = HttpListener(object : Action<ResponseModels.TestsClass> {
-            override fun onMessage(value: ResponseModels.TestsClass?) {
+            override fun onMessage(isSuccess: Boolean,value: ResponseModels.TestsClass?) {
                 Looper.prepare()
                 val result = value?.data?.firstOrNull()?.attributes
                 val toast = Toast.makeText(
@@ -42,7 +43,7 @@ class TestActivity : AppCompatActivity() {
             }
         })
 
-        get.request(event)
+       // get.request(event)
     }
 
     fun buttonClickToProfile(v: View)

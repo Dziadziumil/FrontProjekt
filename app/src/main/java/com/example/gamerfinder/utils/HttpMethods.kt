@@ -1,18 +1,23 @@
 package com.example.gamerfinder.utils
 
-import com.example.gamerfinder.activities.loginactivity.User
-import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.serializer
-
 sealed class HttpGet {
 
-    @Api("tests")
+  /*  @Api("tests")
     object TestsGet :
-        ApiClient(ResponseModels.TestsClass.serializer())
+        ApiClient(requestClass = null, ResponseModels.TestsClass::class)
 
 
     @Api("users")
     object UsersGet :
-        ApiClient(ListSerializer(UserEntity.serializer()))
+        ApiClient(requestClass = null, ListSerializer(ResponseModels.UserFull.serializer()))
+*/}
+
+sealed class HttpPost {
+
+    @Api("Auth")
+    object AuthenticatePost :
+        ApiClient<RequestModels.AuthRequest, ResponseModels.AuthResponse>(
+            ResponseModels.AuthResponse::class,
+
+            )
 }

@@ -7,7 +7,6 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.example.gamerfinder.R
 import com.example.gamerfinder.activities.profile.MyProfileActivity
 import com.example.gamerfinder.activities.registeractivity.RegisterActivity
 import com.example.gamerfinder.databinding.ActivityLoginBinding
@@ -38,13 +37,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        binding.testButton.setOnClickListener {
+      /*  binding.testButton.setOnClickListener {
             val get = HttpGet.UsersGet
-            val event = HttpListener(object : Action<List<UserEntity>> {
-                override fun onMessage(value: List<UserEntity>?) {
+
+            val event = HttpListener(object : Action<List<ResponseModels.UserFull>> {
+                override fun onMessage(isSuccess: Boolean, value: List<ResponseModels.UserFull>?) {
                     Looper.prepare()
                     val result =
-                        value as List<UserEntity>
+                        value as List<ResponseModels.UserFull>
                     val toast = Toast.makeText(
                         applicationContext,
                         "got a result of: $result",
@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
             })
             println("sending request")
             get.request(event)
-        }
+        }*/
 
         viewModel.loginStatus.observe(this, Observer {
             if (it.usernameError != null) {

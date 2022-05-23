@@ -45,13 +45,13 @@ class LoginFragment : Fragment() {
             viewModel.login(username.text.toString(), password.text.toString())
         }
 
-        binding.testButton.setOnClickListener {
+        /*binding.testButton.setOnClickListener {
             val get = HttpGet.UsersGet
-            val event = HttpListener(object : Action<List<UserEntity>> {
-                override fun onMessage(value: List<UserEntity>?) {
+            val event = HttpListener(object : Action<List<ResponseModels.UserFull>> {
+                override fun onMessage(isSuccess: Boolean, value: List<ResponseModels.UserFull>?) {
                     Looper.prepare()
                     val result =
-                        value as List<UserEntity>
+                        value as List<ResponseModels.UserFull>
                     val toast = Toast.makeText(
                         context,
                         "got a result of: $result",
@@ -64,6 +64,26 @@ class LoginFragment : Fragment() {
             })
             println("sending request")
             get.request(event)
+        }*/
+
+        binding.testButton.setOnClickListener {
+            val post = HttpPost.AuthenticatePost
+            post.addListener(HttpListener(object : Action<ResponseModels.AuthResponse> {
+                override fun onMessage(isSuccess: Boolean, value: ResponseModels.AuthResponse?) {
+                    Looper.prepare()
+                    val toast = Toast.makeText(
+                        context,
+                        "got a result of: $value",
+                        Toast.LENGTH_SHORT
+                    )
+                    toast.show()
+                    println(value)
+                    Looper.loop()
+                }
+            }))
+
+            println("sending request")
+            post.requestPost(RequestModels.AuthRequest("string", "string"))
         }
 
         viewModel.loginStatus.observe(viewLifecycleOwner) {
