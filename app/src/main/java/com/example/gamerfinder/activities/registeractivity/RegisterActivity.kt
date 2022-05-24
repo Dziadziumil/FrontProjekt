@@ -1,5 +1,6 @@
 package com.example.gamerfinder.activities.registeractivity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.DatePicker
@@ -21,19 +22,9 @@ class RegisterActivity : AppCompatActivity() {
         binding.button.text = "Register"
 
         val emailPattern = Regex("\\w+@\\w+[.]\\w+", RegexOption.IGNORE_CASE)
-        val namePattern = Regex("^[a-zA-Z]+\$", RegexOption.IGNORE_CASE)
-        var c = Calendar.getInstance()
-        var cYear = c.get(Calendar.YEAR)
 
         binding.button.setOnClickListener {
             when {
-                binding.personName.length() < 2 || !namePattern.containsMatchIn(binding.personName.text.toString()) -> {
-                    binding.personNameLayout.error = "Wrong user's Name."
-                    //Toast.makeText(this, "Wrong user's Name.", Toast.LENGTH_LONG).show()
-                }
-                binding.personSurname.length() < 2 || !namePattern.containsMatchIn(binding.personSurname.text.toString()) -> {
-                    Toast.makeText(this, "Wrong user's Surname.", Toast.LENGTH_LONG).show()
-                }
                 binding.username.text.isNullOrEmpty() -> {
                     Toast.makeText(
                         this,
@@ -42,33 +33,31 @@ class RegisterActivity : AppCompatActivity() {
                     ).show()
                 }
                 binding.username.length() < 4 -> {
-                    Toast.makeText(this, "Nickname is too short.", Toast.LENGTH_LONG).show()
+                    binding.usernameLayout.error = "Nickname is too short."
+                    //Toast.makeText(this, "Nickname is too short.", Toast.LENGTH_LONG).show()
                 }
                 !emailPattern.containsMatchIn(binding.personEmail.text.toString()) -> {
-                    Toast.makeText(this, "Please enter correct email address.", Toast.LENGTH_LONG)
-                        .show()
-                }
-                cYear - binding.personBirth.year < 13 -> {
-                    Toast.makeText(this, "You must be at least 13 years old.", Toast.LENGTH_LONG)
-                        .show()
+                    binding.personEmailLayout.error = "Please enter correct email address."
+                    //Toast.makeText(this, "Please enter correct email address.", Toast.LENGTH_LONG).show()
                 }
                 binding.password.length() < 6 -> {
-                    Toast.makeText(this, "Password is too short.", Toast.LENGTH_LONG).show()
+                    binding.passwordLayout.error = "Password is too short."
+                    //Toast.makeText(this, "Password is too short.", Toast.LENGTH_LONG).show()
                 }
                 binding.confirmPassword.length() < 6 -> {
-                    Toast.makeText(this, "Please retype your password.", Toast.LENGTH_LONG).show()
+                    binding.confirmPasswordLayout.error = "Please retype your password."
+                    //Toast.makeText(this, "Please retype your password.", Toast.LENGTH_LONG).show()
                 }
                 binding.password.text.toString() != binding.confirmPassword.text.toString() -> {
-                    Toast.makeText(this, "Wrong password's retype.", Toast.LENGTH_LONG).show()
-                }
-                !binding.buttonFemale.isChecked && !binding.buttonMale.isChecked && !binding.buttonOther.isChecked -> {
-                    Toast.makeText(this, "Please tell us your gender.", Toast.LENGTH_LONG).show()
+                    binding.confirmPasswordLayout.error = "Wrong password's retype."
+                    //Toast.makeText(this, "Wrong password's retype.", Toast.LENGTH_LONG).show()
                 }
                 !binding.termsOfService.isChecked -> {
                     Toast.makeText(this, "Please accept the rules!", Toast.LENGTH_LONG).show()
                 }
                 else -> {
-                    binding.button.text = "Registered!"
+                    val ansDec = Intent(this, RegisterDecisionActivity::class.java)
+                    startActivity(ansDec)
                 }
             }
         }
