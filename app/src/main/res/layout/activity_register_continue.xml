@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.registeractivity.RegisterActivity">
+    tools:context=".activities.registeractivity.RegisterContinueActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -25,31 +25,30 @@
             android:orientation="vertical"
             >
 
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/username_layout"
+                android:id="@+id/personName_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="@dimen/default_padding"
-                android:minHeight="48dp"
-                app:errorEnabled="true">
+                app:errorEnabled="true"
+                android:minHeight="48dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/username"
+                    android:id="@+id/personName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Name"
                     android:ems="10"
-                    android:hint="User name"
                     android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/personEmail_layout"
+                android:id="@+id/personSurname_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,66 +60,69 @@
                 android:minHeight="48dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/personEmail"
+                    android:id="@+id/personSurname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="Surname"
                     android:ems="10"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/password_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <RadioGroup
+                android:id="@+id/genderButtons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="-20dp"
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
                 android:layout_marginEnd="32dp"
-                android:layout_marginBottom="@dimen/default_padding"
-                app:errorEnabled="true"
-                android:minHeight="48dp">
+                tools:visibility="visible">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password"
+                <TextView
+                    android:id="@+id/labelGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:ems="10"
-                    android:inputType="textPassword" />
+                    android:text="Choose your gender" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <RadioButton
+                    android:id="@+id/buttonFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Female" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/confirm_password_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <RadioButton
+                    android:id="@+id/buttonMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:visibility="visible" />
+
+                <RadioButton
+                    android:id="@+id/buttonOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Other" />
+            </RadioGroup>
+            <TextView
+                android:id="@+id/labelAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="-20dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginBottom="-20dp"
-                app:errorEnabled="true"
-                android:minHeight="48dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/confirm_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Confirm password"
-                    android:ems="10"
-                    android:inputType="textPassword" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <CheckBox
-                android:id="@+id/termsOfService"
-                android:layout_width="match_parent"
+                android:text="Choose your date of birth" />
+            <DatePicker
+                android:id="@+id/personBirth"
+                android:layout_width="345dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="32dp"
-                android:text="I accept the terms of service" />
+                android:layout_marginTop="@dimen/linear_layout_top_margin"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:spinnersShown="true"
+
+                android:translationX="32dp"/>
+
 
             <Button
                 android:id="@+id/button"
@@ -128,7 +130,7 @@
                 android:layout_height="64dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="0dp"
-                android:text="Register"
+                android:text="Confirm"
                 android:textAlignment="center"
                 android:visibility="visible"
                 tools:visibility="visible" />
