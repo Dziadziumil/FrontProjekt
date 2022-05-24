@@ -35,9 +35,10 @@ sealed class ResponseModels {
 
     @Serializable
     data class AuthResponse(
-        val id: Int?,
-        val token: String?
-    ) {
+        val id: Int? = null,
+        val token: String? = null
+    )
+    {
         override fun toString(): String {
             return "RegisterResponse(id=$id, token=$token)"
         }

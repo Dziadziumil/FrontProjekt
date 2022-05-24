@@ -73,7 +73,7 @@ class LoginFragment : Fragment() {
                     Looper.prepare()
                     val toast = Toast.makeText(
                         context,
-                        "got a result of: $value",
+                        "got a result $isSuccess of: $value",
                         Toast.LENGTH_SHORT
                     )
                     toast.show()

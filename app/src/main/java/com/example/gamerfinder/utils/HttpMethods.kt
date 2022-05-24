@@ -18,6 +18,5 @@ sealed class HttpPost {
     object AuthenticatePost :
         ApiClient<RequestModels.AuthRequest, ResponseModels.AuthResponse>(
             ResponseModels.AuthResponse::class,
-
             )
 }

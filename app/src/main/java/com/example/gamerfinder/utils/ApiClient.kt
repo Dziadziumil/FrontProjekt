@@ -113,8 +113,8 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
                         }
 
                     } catch (e: Exception) {
-                        event.listener.onMessage(false, null)
                         println("IT DIDN'T WORK ${e.message}")
+                        event.listener.onMessage(false, null)
                     }
                 }
             }
