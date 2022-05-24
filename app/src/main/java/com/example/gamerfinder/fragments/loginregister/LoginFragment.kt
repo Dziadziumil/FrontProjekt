@@ -1,8 +1,11 @@
 package com.example.gamerfinder.fragments.loginregister
 
+import android.accounts.Account
+import android.accounts.AccountManager
 import android.content.Intent
 import android.os.Bundle
 import android.os.Looper
+import android.service.autofill.UserData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +47,7 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             viewModel.login(username.text.toString(), password.text.toString())
         }
+
 
         /*binding.testButton.setOnClickListener {
             val get = HttpGet.UsersGet

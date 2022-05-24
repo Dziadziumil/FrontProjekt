@@ -1,22 +1,19 @@
 package com.example.gamerfinder.utils
 
-import com.example.gamerfinder.utils.Configs
-import com.example.gamerfinder.utils.HttpListener
 import kotlinx.serialization.*
 
 
-import com.example.gamerfinder.R
 import kotlinx.serialization.json.Json
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
-import java.io.Serializable
 import java.lang.Exception
 import kotlin.concurrent.thread
 import kotlin.reflect.KClass
 
 annotation class Api(val path: String)
+annotation class UseId
 
 enum class ResponseCodes(val code: Int) {
     OK(200),
@@ -31,7 +28,7 @@ val regex = Regex("\"type\":\"[^\"]*\",")
 sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
 
     fun requestPost(req: Req?) {
-        privrequest(req)
+        privRequest(req)
     }
 
     fun addListener(event: HttpListener<Rsp>) {
@@ -41,7 +38,7 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
     lateinit var event: HttpListener<Rsp>
 
     fun requestGet() {
-        privrequest(null)
+        privRequest(null)
     }
 
 
@@ -59,8 +56,12 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
 
     @OptIn(InternalSerializationApi::class)
     @Suppress("UNCHECKED_CAST")
-    private fun privrequest(requestBody: Req? = null) {
-        val apiUrl = (this.javaClass.annotations.find { it is Api } as Api).path
+    private fun privRequest(requestBody: Req? = null) {
+        val annotations = this.javaClass.annotations
+        var apiUrl = (annotations.find { it is Api } as Api).path
+        annotations.find { it is UseId }?.let {
+            apiUrl += "/1"
+        }
         thread {
             val url = "https://${Configs.serverIp}/api/$apiUrl"
             println(url)
@@ -81,7 +82,6 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
                     .build()
             }
             println("request: $request")
-
             val client = OkHttpClient()
 
             client.newCall(request).enqueue(object : Callback {
