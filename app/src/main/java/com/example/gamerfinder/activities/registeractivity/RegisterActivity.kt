@@ -33,20 +33,24 @@ class RegisterActivity : AppCompatActivity() {
                     ).show()
                 }
                 binding.username.length() < 4 -> {
-                    Toast.makeText(this, "Nickname is too short.", Toast.LENGTH_LONG).show()
+                    binding.usernameLayout.error = "Nickname is too short."
+                    //Toast.makeText(this, "Nickname is too short.", Toast.LENGTH_LONG).show()
                 }
                 !emailPattern.containsMatchIn(binding.personEmail.text.toString()) -> {
-                    Toast.makeText(this, "Please enter correct email address.", Toast.LENGTH_LONG)
-                        .show()
+                    binding.personEmailLayout.error = "Please enter correct email address."
+                    //Toast.makeText(this, "Please enter correct email address.", Toast.LENGTH_LONG).show()
                 }
                 binding.password.length() < 6 -> {
-                    Toast.makeText(this, "Password is too short.", Toast.LENGTH_LONG).show()
+                    binding.passwordLayout.error = "Password is too short."
+                    //Toast.makeText(this, "Password is too short.", Toast.LENGTH_LONG).show()
                 }
                 binding.confirmPassword.length() < 6 -> {
-                    Toast.makeText(this, "Please retype your password.", Toast.LENGTH_LONG).show()
+                    binding.confirmPasswordLayout.error = "Please retype your password."
+                    //Toast.makeText(this, "Please retype your password.", Toast.LENGTH_LONG).show()
                 }
                 binding.password.text.toString() != binding.confirmPassword.text.toString() -> {
-                    Toast.makeText(this, "Wrong password's retype.", Toast.LENGTH_LONG).show()
+                    binding.confirmPasswordLayout.error = "Wrong password's retype."
+                    //Toast.makeText(this, "Wrong password's retype.", Toast.LENGTH_LONG).show()
                 }
                 !binding.termsOfService.isChecked -> {
                     Toast.makeText(this, "Please accept the rules!", Toast.LENGTH_LONG).show()

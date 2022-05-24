@@ -31,11 +31,11 @@ class RegisterContinueActivity : AppCompatActivity() {
                     //Toast.makeText(this, "Wrong user's Name.", Toast.LENGTH_LONG).show()
                 }
                 binding.personSurname.length() < 2 || !namePattern.containsMatchIn(binding.personSurname.text.toString()) -> {
-                    Toast.makeText(this, "Wrong user's Surname.", Toast.LENGTH_LONG).show()
+                    binding.personSurnameLayout.error = "Wrong user's Surname."
+                    //Toast.makeText(this, "Wrong user's Surname.", Toast.LENGTH_LONG).show()
                 }
                 cYear - binding.personBirth.year < 13 -> {
-                    Toast.makeText(this, "You must be at least 13 years old.", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(this, "You must be at least 13 years old.", Toast.LENGTH_LONG).show()
                 }
                 !binding.buttonFemale.isChecked && !binding.buttonMale.isChecked && !binding.buttonOther.isChecked -> {
                     Toast.makeText(this, "Please tell us your gender.", Toast.LENGTH_LONG).show()
