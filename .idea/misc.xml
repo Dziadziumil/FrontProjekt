@@ -9,6 +9,11 @@
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_register_continue.xml" value="0.33" />
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_register_decision.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_login.xml" value="0.27898550724637683" />
+        <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_register.xml" value="0.27898550724637683" />
+        <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_register_continue.xml" value="0.27898550724637683" />
+        <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_register_decision.xml" value="0.27898550724637683" />
+        <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_start.xml" value="0.27898550724637683" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.10234375" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout-w936dp/activity_login.xml" value="0.13465952563121653" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_login.xml" value="0.17831813576494426" />
