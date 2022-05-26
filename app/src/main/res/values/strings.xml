@@ -14,7 +14,12 @@
     <string name="password_input">Password</string>
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
+    <string name="login_error">Invalid username or password</string>
+
     <string name="title_activity_profile_view">profileView</string>
+
+    <string name="preferences_file">my_preferences</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

@@ -1,22 +1,39 @@
 package com.example.gamerfinder.activities.loginactivity
 
-import com.example.gamerfinder.R
+import androidx.lifecycle.MutableLiveData
+import com.example.gamerfinder.utils.*
+import java.security.MessageDigest
 
 class LoginRepository {
 
-    val user: User? = null
+    fun login(
+        username: String,
+        password: String,
+        _loginResult: MutableLiveData<LoginResult<ResponseModels.AuthResponse>>
+    ) {
+        val hash = hashPassword(password)
 
-    fun login(username: String, password: String): LoginResult {
-        //TODO: api call
-        return if(password == "1234567") {
-            LoginResult(
-                success = User(
-                    "123",
-                    username
-                )
-            )
-        } else {
-            LoginResult(error = R.string.login_failed)
-        }
+        val post = HttpPost.AuthenticatePost
+        post.addListener(HttpListener(object : Action<ResponseModels.AuthResponse> {
+            override fun onMessage(isSuccess: Boolean, value: ResponseModels.AuthResponse?) {
+                value?.let {
+                    _loginResult.postValue(LoginResult.Success<ResponseModels.AuthResponse>(value))
+                }
+                if(!isSuccess)
+                    _loginResult.postValue(LoginResult.Error("Something went wrong"))
+            }
+        }))
+        
+        println("sending request")
+        post.requestPost(RequestModels.AuthRequest(username,hash))
+    }
+
+    private fun hashPassword(password: String): String {
+        return MessageDigest
+            .getInstance("SHA-256")
+            .digest(password.toByteArray())
+            .fold("") {
+                    str, byte -> str + "%02x".format(byte)
+            }
     }
 }

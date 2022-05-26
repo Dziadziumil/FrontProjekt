@@ -5,9 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.gamerfinder.R
-import com.example.gamerfinder.utils.Action
-import com.example.gamerfinder.utils.HttpGet
-import com.example.gamerfinder.utils.HttpListener
 import com.example.gamerfinder.utils.ResponseModels
 import java.util.regex.Pattern
 
@@ -20,8 +17,8 @@ class LoginViewModel : ViewModel() {
     private val _loginStatus = MutableLiveData<LoginStatus>()
     val loginStatus: LiveData<LoginStatus> = _loginStatus
 
-    private val _loginResult = MutableLiveData<LoginResult>()
-    val loginResult: LiveData<LoginResult> = _loginResult
+    private val _loginResult = MutableLiveData<LoginResult<ResponseModels.AuthResponse>>()
+    val loginResult: LiveData<LoginResult<ResponseModels.AuthResponse>> = _loginResult
 
     fun login(username: String, password: String) {
         if(!isUsernameValid(username)) {
@@ -34,20 +31,14 @@ class LoginViewModel : ViewModel() {
         }
         _loginStatus.value = LoginStatus(isDataValid = true)
 
-        val result = loginRepository.login(username, password)
-
-        _loginResult.value = result
+        loginRepository.login(username, password, _loginResult)
     }
 
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 6
+        return password.length >= 0
     }
 
     private fun isUsernameValid(username: String): Boolean {
-        return if(username.contains('@')) {
-            Patterns.EMAIL_ADDRESS.matcher(username).matches()
-        } else {
-            USERNAME.matcher(username).matches()
-        }
+        return Patterns.EMAIL_ADDRESS.matcher(username).matches()
     }
 }

@@ -73,15 +73,13 @@ class LoginActivity : AppCompatActivity() {
         })
 
         viewModel.loginResult.observe(this, Observer {
-            if (it.success != null) {
-                Snackbar.make(binding.loginButton, it.success.username, Snackbar.LENGTH_SHORT)
-                    .show()
-                handleLoginSuccess()
-            }
-            if (it.error != null) {
-                Snackbar.make(binding.loginButton, getString(it.error), Snackbar.LENGTH_SHORT)
-                    .show()
-                //TODO: handle error
+            when(it) {
+                is LoginResult.Success -> {
+                    Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_SHORT).show()
+                }
+                is LoginResult.Error -> {
+                    Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_SHORT).show()
+                }
             }
         })
     }

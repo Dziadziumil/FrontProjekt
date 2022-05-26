@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0C001A"
     tools:context=".activities.profile.ExtProfileActivity">
 
     <ImageView
@@ -62,7 +61,6 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:text="name"
-        android:textColor="#F8EBFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -74,7 +72,6 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:text="My Games"
-        android:textColor="#F8EBFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -86,7 +83,6 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:text="My Friends"
-        android:textColor="#F8EBFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
@@ -98,7 +94,6 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:text="e-mail"
-        android:textColor="#F8EBFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -120,7 +115,6 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:text="password"
-        android:textColor="#F8EBFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
