@@ -22,39 +22,52 @@ class RegisterFragment : Fragment() {
         return binding.root
     }
 
+    val emailPattern = Regex("\\w+@\\w+[.]\\w+", RegexOption.IGNORE_CASE)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val emailPattern = Regex("\\w+@\\w+[.]\\w+", RegexOption.IGNORE_CASE)
 
         binding.button.setOnClickListener {
-            when {
-                binding.username.text.isNullOrEmpty() -> {
-                    Toast.makeText(context,"Please tell us how we should call you.", Toast.LENGTH_LONG).show()
-                }
-                binding.username.length() < 4 -> {
-                    binding.usernameLayout.error = "Nickname is too short."
-                }
-                !emailPattern.containsMatchIn(binding.personEmail.text.toString()) -> {
-                    binding.personEmailLayout.error = "Please enter correct email address."
-                }
-                binding.password.length() < 6 -> {
-                    binding.passwordLayout.error = "Password is too short."
-                }
-                binding.confirmPassword.length() < 6 -> {
-                    binding.confirmPasswordLayout.error = "Please retype your password."
-                }
-                binding.password.text.toString() != binding.confirmPassword.text.toString() -> {
-                    binding.confirmPasswordLayout.error = "Wrong password's retype."
-                }
-                !binding.termsOfService.isChecked -> {
-                    Toast.makeText(context, "Please accept the rules!", Toast.LENGTH_LONG).show()
-                }
-                else -> {
-                    val action = RegisterFragmentDirections.actionSignupFragmentToRegisterDecisionFragment()
-                    view.findNavController().navigate(action)
-                }
-            }
+            checkRegisterData(view)
+        }
+    }
+
+    private fun checkRegisterData(view: View) {
+        /* binding.username.text.isNullOrEmpty() -> {
+                Toast.makeText(context,"Please tell us how we should call you.", Toast.LENGTH_LONG).show()
+            }*/
+        var isCorrect = true
+        if (binding.username.length() < 4) {
+            binding.usernameLayout.error = "Nickname is too short."
+            isCorrect = false
+        }
+        if (!emailPattern.containsMatchIn(binding.personEmail.text.toString())) {
+            binding.personEmailLayout.error = "Please enter correct email address."
+            isCorrect = false
+        }
+        if (binding.password.length() < 6) {
+            binding.passwordLayout.error = "Password is too short."
+            isCorrect = false
+        }
+        if (binding.confirmPassword.length() < 6) {
+            binding.confirmPasswordLayout.error = "Please retype your password."
+            isCorrect = false
+        }
+        if (binding.password.text.toString() != binding.confirmPassword.text.toString()) {
+            binding.confirmPasswordLayout.error = "Wrong password's retype."
+            isCorrect = false
+        }
+        if (!binding.termsOfService.isChecked) {
+            binding.termsOfService.error = "Please accept the rules!"
+            binding.termsOfService.requestFocus()
+            // Toast.makeText(context, , Toast.LENGTH_LONG).show()
+            isCorrect = false
+        }
+        if (isCorrect) {
+            val action =
+                RegisterFragmentDirections.actionSignupFragmentToRegisterDecisionFragment()
+            view.findNavController().navigate(action)
         }
     }
 

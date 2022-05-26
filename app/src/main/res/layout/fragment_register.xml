@@ -58,6 +58,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="@dimen/default_padding"
                 app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_account_box"
                 android:minHeight="48dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -118,8 +119,10 @@
             <CheckBox
                 android:id="@+id/termsOfService"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:layout_margin="32dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:text="I accept the terms of service" />
 
             <Button
