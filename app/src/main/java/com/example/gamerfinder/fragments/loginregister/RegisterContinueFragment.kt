@@ -1,25 +1,29 @@
-package com.example.gamerfinder.activities.registeractivity
+package com.example.gamerfinder.fragments.loginregister
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.DatePicker
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import com.example.gamerfinder.databinding.ActivityRegisterContinueBinding
-import org.w3c.dom.Text
+import com.example.gamerfinder.databinding.FragmentRegisterContinueBinding
 import java.util.*
 
-class RegisterContinueActivity : AppCompatActivity() {
+class RegisterContinueFragment : Fragment() {
 
-    private lateinit var binding: ActivityRegisterContinueBinding
-    private lateinit var personBirth: DatePicker
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_register_continue)
-        binding = ActivityRegisterContinueBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    private var _binding: FragmentRegisterContinueBinding? = null
+    private val binding get() = _binding!!
 
-        binding.button.text = "Confirm"
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentRegisterContinueBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val namePattern = Regex("^[a-zA-Z]+\$", RegexOption.IGNORE_CASE)
         var c = Calendar.getInstance()
@@ -33,18 +37,22 @@ class RegisterContinueActivity : AppCompatActivity() {
                 }
                 binding.personSurname.length() < 2 || !namePattern.containsMatchIn(binding.personSurname.text.toString()) -> {
                     binding.personSurnameLayout.error = "Wrong user's Surname."
-                    //Toast.makeText(this, "Wrong user's Surname.", Toast.LENGTH_LONG).show()
                 }
                 cYear - binding.personBirth.year < 13 -> {
-                    Toast.makeText(this, "You must be at least 13 years old.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "You must be at least 13 years old.", Toast.LENGTH_LONG).show()
                 }
                 !binding.buttonFemale.isChecked && !binding.buttonMale.isChecked && !binding.buttonOther.isChecked -> {
-                    Toast.makeText(this, "Please tell us your gender.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Please tell us your gender.", Toast.LENGTH_LONG).show()
                 }
                 else -> {
                     binding.button.text = "Confirmed!"
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

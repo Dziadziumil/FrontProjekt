@@ -3,10 +3,8 @@ package com.example.gamerfinder.activities.registeractivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.gamerfinder.databinding.ActivityRegisterDecisionBinding
 import com.example.gamerfinder.ui.login.LoginActivity
-import java.util.*
 
 class RegisterDecisionActivity : AppCompatActivity() {
 

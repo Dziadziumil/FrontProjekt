@@ -26,11 +26,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             when {
                 binding.username.text.isNullOrEmpty() -> {
-                    Toast.makeText(
-                        this,
-                        "Please tell us how we should call you.",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(this,"Please tell us how we should call you.", Toast.LENGTH_LONG).show()
                 }
                 binding.username.length() < 4 -> {
                     binding.usernameLayout.error = "Nickname is too short."

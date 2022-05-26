@@ -26,5 +26,26 @@
         android:id="@+id/signupFragment"
         android:name="com.example.gamerfinder.fragments.loginregister.RegisterFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_signupFragment_to_registerDecisionFragment"
+            app:destination="@id/registerDecisionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerDecisionFragment"
+        android:name="com.example.gamerfinder.fragments.loginregister.RegisterDecisionFragment"
+        android:label="fragment_register_decision"
+        tools:layout="@layout/fragment_register_decision" >
+        <action
+            android:id="@+id/action_registerDecisionFragment_to_registerContinueFragment"
+            app:destination="@id/registerContinueFragment" />
+        <action
+            android:id="@+id/action_registerDecisionFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerContinueFragment"
+        android:name="com.example.gamerfinder.fragments.loginregister.RegisterContinueFragment"
+        android:label="fragment_register_continue"
+        tools:layout="@layout/fragment_register_continue" />
 </navigation>
