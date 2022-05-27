@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.gamerfinder.databinding.FragmentRegisterBinding
 
@@ -22,7 +21,7 @@ class RegisterFragment : Fragment() {
         return binding.root
     }
 
-    val emailPattern = Regex("\\w+@\\w+[.]\\w+", RegexOption.IGNORE_CASE)
+    private val emailPattern = Regex("\\w+@\\w+[.]\\w+", RegexOption.IGNORE_CASE)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,7 +60,6 @@ class RegisterFragment : Fragment() {
         if (!binding.termsOfService.isChecked) {
             binding.termsOfService.error = "Please accept the rules!"
             binding.termsOfService.requestFocus()
-            // Toast.makeText(context, , Toast.LENGTH_LONG).show()
             isCorrect = false
         }
         if (isCorrect) {
