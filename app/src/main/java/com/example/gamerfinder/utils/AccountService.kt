@@ -8,20 +8,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.IBinder
 
-class AccountService() : Service() {
+class AccountService(val context: Context) : Service() {
 
-    fun test() {
-    }
 
-    fun addAccount(userName: String, passwordHash: String) {
+    fun addAccount(id: Int, userName: String, passwordHash: String) {
+        val account = Account(userName, "gamerFinder.user")
         AccountManager.get(
-            applicationContext
+            context
         ).let {
             it.addAccountExplicitly(
-                Account(userName, "gamerFinder.user"),
+                account,
                 passwordHash,
-                Bundle.EMPTY
+                null
             )
+            it.setUserData(account, "id", id.toString())
             println(it.accounts)
         }
     }

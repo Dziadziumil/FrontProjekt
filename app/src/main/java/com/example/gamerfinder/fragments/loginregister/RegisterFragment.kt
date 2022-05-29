@@ -1,10 +1,12 @@
 package com.example.gamerfinder.fragments.loginregister
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.gamerfinder.databinding.FragmentRegisterBinding
 import com.example.gamerfinder.utils.*
@@ -30,6 +32,7 @@ class RegisterFragment : Fragment() {
             .joinToString("") { "%02x".format(it) }
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,17 +43,25 @@ class RegisterFragment : Fragment() {
                 val email = binding.personEmail.text.toString()
                 val username = binding.username.text.toString()
                 val passwordHash = getHash(binding.password.text.toString())
+                val handler = Handler(Looper.getMainLooper())
                 HttpPost.RegisterPost.apply {
                     this.addListener(HttpListener(object : Action<ResponseModels.UserFull> {
                         override fun onMessage(
                             isSuccess: Boolean,
                             value: ResponseModels.UserFull?
                         ) {
-                            if (isSuccess && value?.userName != null) {
-                                AccountService().addAccount(username, passwordHash)
+                            if (isSuccess) {
+                                AccountService(requireContext()).addAccount(
+                                    value!!.id!!,
+                                    username,
+                                    passwordHash
+                                )
+
                                 val action =
                                     RegisterFragmentDirections.actionSignupFragmentToRegisterDecisionFragment()
-                                view.findNavController().navigate(action)
+                                handler.post {
+                                    view.findNavController().navigate(action)
+                                }
                             } else {
                                 println("register wasn't a success!")
                             }

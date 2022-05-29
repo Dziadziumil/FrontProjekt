@@ -92,7 +92,7 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    try {
+                    val result = try {
                         when (response.code) {
                             ResponseCodes.OK.code -> {
                                 val rsp = response.body!!.string()
@@ -104,18 +104,19 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
                                 }
                                 println("got response: $rsp")
                                 val jsonrsp = json.decodeFromString(responseSerializer, rsp)
-                                event.listener.onMessage(true, jsonrsp as Rsp?)
+                                jsonrsp as Rsp?
                             }
                             else -> {
                                 println("got error: ${response.body!!.string()}")
-                                event.listener.onMessage(false, null)
+                                null
                             }
                         }
 
                     } catch (e: Exception) {
                         println("IT DIDN'T WORK ${e.message}")
-                        event.listener.onMessage(false, null)
+                        null
                     }
+                    event.listener.onMessage(result != null, result)
                 }
             }
             )
