@@ -1,12 +1,10 @@
 package com.example.gamerfinder.fragments.loginregister
 
 import android.os.Bundle
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.gamerfinder.databinding.FragmentRegisterBinding
 import com.example.gamerfinder.utils.*
@@ -39,28 +37,33 @@ class RegisterFragment : Fragment() {
         binding.button.setOnClickListener {
             val isCorrect = checkRegisterData(view)
             if (isCorrect) {
+                val email = binding.personEmail.text.toString()
+                val username = binding.username.text.toString()
+                val passwordHash = getHash(binding.password.text.toString())
                 HttpPost.RegisterPost.apply {
                     this.addListener(HttpListener(object : Action<ResponseModels.UserFull> {
                         override fun onMessage(
                             isSuccess: Boolean,
                             value: ResponseModels.UserFull?
                         ) {
-                            if (isSuccess) {
+                            if (isSuccess && value?.userName != null) {
+                                AccountService().addAccount(username, passwordHash)
                                 val action =
                                     RegisterFragmentDirections.actionSignupFragmentToRegisterDecisionFragment()
                                 view.findNavController().navigate(action)
-                            }else{
+                            } else {
                                 println("register wasn't a success!")
                             }
                         }
                     }))
                 }.requestPost(
                     RequestModels.RegisterRequest(
-                        binding.personEmail.text.toString(),
-                        binding.username.text.toString(),
-                        getHash(binding.password.text.toString())
+                        email,
+                        username,
+                        passwordHash
                     )
                 )
+
             }
         }
     }
