@@ -1,12 +1,16 @@
 package com.example.gamerfinder.fragments.loginregister
 
 import android.os.Bundle
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.gamerfinder.databinding.FragmentRegisterBinding
+import com.example.gamerfinder.utils.*
+import java.security.MessageDigest
 
 class RegisterFragment : Fragment() {
 
@@ -23,16 +27,45 @@ class RegisterFragment : Fragment() {
 
     private val emailPattern = Regex("\\w+@\\w+[.]\\w+", RegexOption.IGNORE_CASE)
 
+    fun getHash(password: String): String {
+        return MessageDigest.getInstance("SHA-256").digest((password).toByteArray())
+            .joinToString("") { "%02x".format(it) }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
         binding.button.setOnClickListener {
-            checkRegisterData(view)
+            val isCorrect = checkRegisterData(view)
+            if (isCorrect) {
+                HttpPost.RegisterPost.apply {
+                    this.addListener(HttpListener(object : Action<ResponseModels.UserFull> {
+                        override fun onMessage(
+                            isSuccess: Boolean,
+                            value: ResponseModels.UserFull?
+                        ) {
+                            if (isSuccess) {
+                                val action =
+                                    RegisterFragmentDirections.actionSignupFragmentToRegisterDecisionFragment()
+                                view.findNavController().navigate(action)
+                            }else{
+                                println("register wasn't a success!")
+                            }
+                        }
+                    }))
+                }.requestPost(
+                    RequestModels.RegisterRequest(
+                        binding.personEmail.text.toString(),
+                        binding.username.text.toString(),
+                        getHash(binding.password.text.toString())
+                    )
+                )
+            }
         }
     }
 
-    private fun checkRegisterData(view: View) {
+    private fun checkRegisterData(view: View): Boolean {
         /* binding.username.text.isNullOrEmpty() -> {
                 Toast.makeText(context,"Please tell us how we should call you.", Toast.LENGTH_LONG).show()
             }*/
@@ -62,11 +95,7 @@ class RegisterFragment : Fragment() {
             binding.termsOfService.requestFocus()
             isCorrect = false
         }
-        if (isCorrect) {
-            val action =
-                RegisterFragmentDirections.actionSignupFragmentToRegisterDecisionFragment()
-            view.findNavController().navigate(action)
-        }
+        return isCorrect
     }
 
     override fun onDestroy() {

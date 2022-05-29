@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.gamerfinder.utils.UserPreferences
 import com.example.gamerfinder.databinding.ActivityMainBinding
+import com.example.gamerfinder.utils.Configs
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Configs.initProperties(applicationContext)
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -2,9 +2,11 @@ package com.example.gamerfinder
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.gamerfinder.databinding.ActivityHomeBinding
+import com.example.gamerfinder.utils.Configs
 
 class HomeActivity : AppCompatActivity() {
 

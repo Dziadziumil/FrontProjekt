@@ -37,8 +37,7 @@ sealed class ResponseModels {
     data class AuthResponse(
         val id: Int? = null,
         val token: String? = null
-    )
-    {
+    ) {
         override fun toString(): String {
             return "RegisterResponse(id=$id, token=$token)"
         }
@@ -58,6 +57,18 @@ class RequestModels {
             return "AuthRequest(UserEmail=$UserEmail, PasswordHash=$PasswordHash)"
         }
     }
+
+    @Serializable
+    data class RegisterRequest(
+        val email: String?,
+        val userName: String?,
+        val passwordHash: String?
+    ) : BaseModel() {
+        override fun toString(): String {
+            return "RegisterRequest(email=$email, userName=$userName, passwordHash=$passwordHash)"
+        }
+    }
+
 
     @Serializable
     sealed class BaseModel
