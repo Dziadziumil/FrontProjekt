@@ -14,13 +14,18 @@ import java.lang.Exception
 import kotlin.concurrent.thread
 import kotlin.reflect.KClass
 
-annotation class Api(val path: String)
+annotation class Api(val path: String, val method: HttpMethod = HttpMethod.POST)
 annotation class UseId
 annotation class UseToken
 
 enum class ResponseCodes(val code: Int) {
     OK(200),
     BAD_REQUEST(400)
+}
+
+enum class HttpMethod(val method: String) {
+    POST("POST"),
+    PUT("PUT")
 }
 
 
@@ -45,11 +50,11 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
     }
 
 
-    val responseSerializer: KSerializer<*>
+    val responseSerializer: KSerializer<*>?
 
     @OptIn(InternalSerializationApi::class)
-    constructor(responseClass: KClass<*>) {
-        this.responseSerializer = responseClass.serializer()
+    constructor(responseClass: KClass<*>?) {
+        this.responseSerializer = responseClass?.serializer()
     }
 
     @OptIn(InternalSerializationApi::class)
@@ -61,10 +66,11 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
     @Suppress("UNCHECKED_CAST")
     private fun privRequest(requestBody: Req? = null, context: Context) {
         val annotations = this.javaClass.annotations
-        var apiUrl = (annotations.find { it is Api } as Api).path
+        val annotation = (annotations.find { it is Api } as Api)
+        var apiUrl = annotation.path
         val accService = AccountService(context)
         annotations.find { it is UseId }?.let {
-            apiUrl += accService.getCurrentUserId()
+            apiUrl += "/${accService.getCurrentUserId()}"
         }
         val useToken = annotations.any { it is UseToken }
 
@@ -87,22 +93,52 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
                 val json =
                     Json.encodeToString<RequestModels.BaseModel>(requestBody).replace(regex, "")
                 println(json)
-                if (useToken) {
-                    Request.Builder()
-                        .url(url)
-                        .header("Authorization", "Bearer ${accService.getCurrentAccountToken()}")
-                        .post(
-                            json.toRequestBody(MEDIA_TYPE_MARKDOWN)
-                        )
-                        .build()
-                } else {
-                    Request.Builder()
-                        .url(url)
-                        .post(
-                            json.toRequestBody(MEDIA_TYPE_MARKDOWN)
-                        )
-                        .build()
+                when (annotation.method) {
+                    HttpMethod.POST -> {
+                        if (useToken) {
+                            Request.Builder()
+                                .url(url)
+                                .header(
+                                    "Authorization",
+                                    "Bearer ${accService.getCurrentAccountToken()}"
+                                )
+                                .post(
+                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+                                )
+                                .build()
+                        } else {
+                            Request.Builder()
+                                .url(url)
+                                .post(
+                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+                                )
+                                .build()
+                        }
+                    }
+                    HttpMethod.PUT -> {
+                        if (useToken) {
+                            Request.Builder()
+                                .url(url)
+                                .header(
+                                    "Authorization",
+                                    "Bearer ${accService.getCurrentAccountToken()}"
+                                )
+                                .put(
+                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+                                )
+                                .build()
+                        } else {
+                            Request.Builder()
+                                .url(url)
+                                .put(
+                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+                                )
+                                .build()
+                        }
+                    }
                 }
+
+
             }
             println("request: $request")
             val client = OkHttpClient()
@@ -126,8 +162,10 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
                                     allowStructuredMapKeys = true
                                 }
                                 println("got response: $rsp")
-                                val jsonrsp = json.decodeFromString(responseSerializer, rsp)
-                                jsonrsp as Rsp?
+                                responseSerializer?.let {
+                                    json.decodeFromString(responseSerializer, rsp) as Rsp?
+
+                                }
                             }
                             else -> {
                                 println("got error: ${response.body!!.string()}")

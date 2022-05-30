@@ -12,6 +12,16 @@ sealed class HttpGet {
   */
 }
 
+sealed class HttpPut {
+    @Api("Users", HttpMethod.PUT)
+    @UseId
+    @UseToken
+    object UpdateUser :
+        ApiClient<RequestModels.UserData, Nothing>(
+            null,
+        )
+}
+
 sealed class HttpPost {
 
     @Api("Auth")
@@ -22,7 +32,7 @@ sealed class HttpPost {
         )
 
     @Api("Users/register")
-    object RegisterPost:
+    object RegisterPost :
         ApiClient<RequestModels.RegisterRequest, ResponseModels.UserFull>(
             ResponseModels.UserFull::class,
         )

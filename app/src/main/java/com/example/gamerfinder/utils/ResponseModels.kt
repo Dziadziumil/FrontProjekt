@@ -49,6 +49,19 @@ sealed class ResponseModels {
 class RequestModels {
 
     @Serializable
+    data class UserData(
+        val userName: String?,
+        val firstName: String?,
+        val secondName: String?,
+        val birthDate: String?,
+        val gender: String?
+    ) : BaseModel() {
+        override fun toString(): String {
+            return "UserFull(userName=$userName, firstName=$firstName, secondName=$secondName, birthDate=$birthDate, gender=$gender)"
+        }
+    }
+
+    @Serializable
     data class AuthRequest(
         val UserEmail: String?,
         val PasswordHash: String?
