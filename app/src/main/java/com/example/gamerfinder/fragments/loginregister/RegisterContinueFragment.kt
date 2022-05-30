@@ -79,7 +79,7 @@ class RegisterContinueFragment : Fragment() {
                         if (isSuccess) {
                             handler.post {
                                 val actionNo =
-                                    RegisterDecisionFragmentDirections.actionRegisterDecisionFragmentToLoginFragment()
+                                    RegisterContinueFragmentDirections.actionRegisterContinueFragmentToLoginFragment()
                                 view.findNavController().navigate(actionNo)
                             }
                         } else {
@@ -89,6 +89,7 @@ class RegisterContinueFragment : Fragment() {
                 }))
             }.requestPost(
                 RequestModels.UserData(
+                    AccountService(requireContext()).getCurrentUserId().toInt(),
                     null,
                     binding.personName.text.toString(),
                     binding.personSurname.text.toString(),

@@ -50,6 +50,7 @@ class RequestModels {
 
     @Serializable
     data class UserData(
+        val id: Int,
         val userName: String?,
         val firstName: String?,
         val secondName: String?,

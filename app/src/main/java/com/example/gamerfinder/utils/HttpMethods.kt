@@ -15,7 +15,7 @@ sealed class HttpGet {
 sealed class HttpPut {
     @Api("Users", HttpMethod.PUT)
     @UseId
-    @UseToken
+    //@UseToken
     object UpdateUser :
         ApiClient<RequestModels.UserData, Nothing>(
             null,

@@ -47,5 +47,9 @@
         android:id="@+id/registerContinueFragment"
         android:name="com.example.gamerfinder.fragments.loginregister.RegisterContinueFragment"
         android:label="fragment_register_continue"
-        tools:layout="@layout/fragment_register_continue" />
+        tools:layout="@layout/fragment_register_continue" >
+        <action
+            android:id="@+id/action_registerContinueFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

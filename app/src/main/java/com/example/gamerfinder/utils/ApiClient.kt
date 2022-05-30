@@ -163,9 +163,12 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
                                 }
                                 println("got response: $rsp")
                                 responseSerializer?.let {
-                                    json.decodeFromString(responseSerializer, rsp) as Rsp?
+                                    Pair(
+                                        true,
+                                        json.decodeFromString(responseSerializer, rsp) as Rsp?
+                                    )
 
-                                }
+                                } ?: Pair(true, null)
                             }
                             else -> {
                                 println("got error: ${response.body!!.string()}")
@@ -177,7 +180,7 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
                         println("IT DIDN'T WORK ${e.message}")
                         null
                     }
-                    event.listener.onMessage(result != null, result)
+                    event.listener.onMessage(result?.first ?: false, result?.second)
                 }
             }
             )
