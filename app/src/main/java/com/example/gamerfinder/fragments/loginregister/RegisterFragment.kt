@@ -52,8 +52,7 @@ class RegisterFragment : Fragment() {
                         ) {
                             if (isSuccess) {
                                 AccountService(requireContext()).addAccount(
-                                    value!!.id!!,
-                                    username
+                                    value!!.id!!
                                 )
 
                                 val action =

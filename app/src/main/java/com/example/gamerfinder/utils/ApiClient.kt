@@ -16,6 +16,7 @@ import kotlin.reflect.KClass
 
 annotation class Api(val path: String)
 annotation class UseId
+annotation class UseToken
 
 enum class ResponseCodes(val code: Int) {
     OK(200),
@@ -61,28 +62,47 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
     private fun privRequest(requestBody: Req? = null, context: Context) {
         val annotations = this.javaClass.annotations
         var apiUrl = (annotations.find { it is Api } as Api).path
+        val accService = AccountService(context)
         annotations.find { it is UseId }?.let {
-
-            apiUrl += AccountService(context).getCurrentUserId()
+            apiUrl += accService.getCurrentUserId()
         }
+        val useToken = annotations.any { it is UseToken }
+
         thread {
             val url = "https://${Configs.serverIp}/api/$apiUrl"
             println(url)
 
             val request = if (requestBody == null) {
-                Request.Builder()
-                    .url(url)
-                    .build()
+                if (useToken) {
+                    Request.Builder()
+                        .url(url)
+                        .header("Authorization", "Bearer ${accService.getCurrentAccountToken()}")
+                        .build()
+                } else {
+                    Request.Builder()
+                        .url(url)
+                        .build()
+                }
             } else {
                 val json =
                     Json.encodeToString<RequestModels.BaseModel>(requestBody).replace(regex, "")
                 println(json)
-                Request.Builder()
-                    .url(url)
-                    .post(
-                        json.toRequestBody(MEDIA_TYPE_MARKDOWN)
-                    )
-                    .build()
+                if (useToken) {
+                    Request.Builder()
+                        .url(url)
+                        .header("Authorization", "Bearer ${accService.getCurrentAccountToken()}")
+                        .post(
+                            json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+                        )
+                        .build()
+                } else {
+                    Request.Builder()
+                        .url(url)
+                        .post(
+                            json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+                        )
+                        .build()
+                }
             }
             println("request: $request")
             val client = OkHttpClient()

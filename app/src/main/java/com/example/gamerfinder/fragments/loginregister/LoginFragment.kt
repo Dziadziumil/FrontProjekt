@@ -59,13 +59,13 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener {
-            viewModel.login(username.text.toString(), password.text.toString(),requireContext())
+            viewModel.login(username.text.toString(), password.text.toString(), requireContext())
         }
 
 
         //_authToken = userPreferences.authToken
         //if(authToken != null)
-            //Toast.makeText(context, authToken, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, authToken, Toast.LENGTH_SHORT).show()
 
         binding.testButton.setOnClickListener {
             val post = HttpPost.AuthenticatePost
@@ -84,7 +84,7 @@ class LoginFragment : Fragment() {
             }))
 
             println("sending request")
-            post.requestPost(RequestModels.AuthRequest("string", "string"),requireContext())
+            post.requestPost(RequestModels.AuthRequest("string", "string"), requireContext())
         }
 
         viewModel.loginStatus.observe(viewLifecycleOwner) {
@@ -101,9 +101,13 @@ class LoginFragment : Fragment() {
         }
 
         viewModel.loginResult.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is LoginResult.Success -> {
-                    userPreferences.saveAuthToken(it.value.token!!)
+                    AccountService(requireContext()).let { service ->
+                        service.addAccount(20)//it.value.id!!)
+                        service.setCurrentAccountToken(it.value.token!!)
+                    }
+
                     handleLoginSuccess()
                 }
                 is LoginResult.Error -> {

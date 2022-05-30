@@ -17,7 +17,7 @@ class AccountService(val context: Context) : Service() {
         AccountManager.get(context).let {
             it.getAccountsByType("gamerFinder.user").let { arr ->
                 if (arr.size == 1) {
-                    return it.getUserData(arr[0], "id")
+                    return arr[0].name
                 } else {
                     throw IndexOutOfBoundsException("There was no active or too much users!")
                 }
@@ -25,24 +25,52 @@ class AccountService(val context: Context) : Service() {
         }
     }
 
-    fun addAccount(id: Int, userName: String) {
+    fun setCurrentAccountToken(token: String) {
+        AccountManager.get(context).let {
+            it.getAccountsByType("gamerFinder.user").let { arr ->
+                if (arr.size == 1) {
+                    it.setAuthToken(arr[0], "OAuth2", token)
+
+                } else {
+                    throw IndexOutOfBoundsException("There was no active or too much users!")
+                }
+            }
+        }
+    }
+
+    fun getCurrentAccountToken(): String {
+        AccountManager.get(context).let {
+            it.getAccountsByType("gamerFinder.user").let { arr ->
+                if (arr.size == 1) {
+                    return it.peekAuthToken(arr[0], "OAuth2")
+
+                } else {
+                    throw IndexOutOfBoundsException("There was no active or too much users!")
+                }
+            }
+        }
+    }
+
+    fun addAccount(id: Int) {
         AccountManager.get(
             context
         ).let {
             it.getAccountsByType("gamerFinder.user").let { arr ->
                 when (arr.size) {
                     0 -> {
-                        val account = Account(userName, "gamerFinder.user")
+                        val account = Account(id.toString(), "gamerFinder.user")
                         it.addAccountExplicitly(
                             account,
                             null,
                             null
                         )
-                        it.setUserData(account, "id", id.toString())
+                        //it.setUserData(account, "id", id.toString())
                     }
                     1 -> {
-                        it.renameAccount(arr[0], userName, null, null)
-                        it.setUserData(arr[0], "id", it.toString())
+                        val newName = id.toString()
+                        if(arr[0].name!=newName)
+                        it.renameAccount(arr[0], newName, null, null)
+                        // it.setUserData(arr[0], "id", it.toString())
                     }
                     else -> {
                         throw IndexOutOfBoundsException("THERE WERE MORE THAN 1 USER!")
