@@ -2,7 +2,7 @@ package com.example.gamerfinder.activities.loginactivity
 
 sealed class LoginResult<out T : Any> {
 
-    data class Success<out T : Any>(val value: T) : LoginResult<T>()
+    data class Success<out T : Any>(val value: T?) : LoginResult<T>()
     data class Error(val error: String) : LoginResult<Nothing>()
 
     override fun toString(): String {

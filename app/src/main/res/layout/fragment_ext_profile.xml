@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0C001A">
+        >
 
         <Button
             android:id="@+id/button3"
@@ -77,7 +77,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="name 0C001A"
-            android:textColor="#F8EBFF"
             android:textSize="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +88,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="status online/offline"
-            android:textColor="#F8EBFF"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +100,6 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
             android:text="Games"
-            android:textColor="#F8EBFF"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button3" />
@@ -114,7 +111,6 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
             android:text="Friends"
-            android:textColor="#F8EBFF"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />

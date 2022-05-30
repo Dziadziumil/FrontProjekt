@@ -10,111 +10,154 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0C001A">
+        android:padding="@dimen/default_padding"
+        >
+
+        <TextView
+            android:id="@+id/fragment_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:text="@string/my_account"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="fitCenter"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            android:id="@+id/imageView"
+            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:importantForAccessibility="no"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_title"
             tools:srcCompat="@tools:sample/avatars"
-            tools:visibility="visible" />
+            />
 
-        <HorizontalScrollView
-            android:id="@+id/horizontalScrollView2"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding"
+            android:enabled="false"
+            app:layout_constraintTop_toBottomOf="@id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_username"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/firstname_layout"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp"
-            android:contentDescription="friends_list"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:layout_marginEnd="@dimen/default_padding"
+            app:layout_constraintTop_toBottomOf="@id/username_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9">
+            app:layout_constraintEnd_toStartOf="@+id/secondname_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/firstname_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_firstname"
+                android:inputType="text"/>
 
-        </HorizontalScrollView>
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-
-        <HorizontalScrollView
-            android:id="@+id/horizontalScrollView"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/secondname_layout"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp"
-            android:contentDescription="games_list"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            app:layout_constraintTop_toBottomOf="@id/username_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10">
+            app:layout_constraintStart_toEndOf="@+id/firstname_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        </HorizontalScrollView>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/secondname_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_secondname"
+                android:inputType="text"/>
 
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="name"
-            android:textColor="#F8EBFF"
-            android:textSize="50dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:enabled="false"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/secondname_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="status online/offline"
-            android:textColor="#F8EBFF"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_email"
+                android:inputType="text" />
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:text="Games"
-            android:textColor="#F8EBFF"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_button" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:text="Friends"
-            android:textColor="#F8EBFF"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/edit_button"
-            android:layout_width="wrap_content"
+            android:text="@string/edit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="edit"
+            app:layout_constraintTop_toBottomOf="@id/email_layout"
+            />
+
+        <Button
+            android:id="@+id/confirm_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            app:layout_constraintStart_toEndOf="@id/cancel_button"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_layout"
+            android:visibility="gone"
+            />
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:layout_marginEnd="@dimen/default_padding"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintEnd_toStartOf="@+id/confirm_button"
+            app:layout_constraintTop_toTopOf="@+id/confirm_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:visibility="gone"
+            />
+
+        <Button
+            android:id="@+id/change_password_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_change_password"
+            app:layout_constraintTop_toBottomOf="@id/edit_button"
+            />
+
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_account"
+            app:layout_constraintTop_toBottomOf="@id/change_password_button"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

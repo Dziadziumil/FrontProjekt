@@ -10,6 +10,12 @@ sealed class HttpGet {
       object UsersGet :
           ApiClient(requestClass = null, ListSerializer(ResponseModels.UserFull.serializer()))
   */
+    @Api("Users")
+    @UseId
+    object GetUser :
+            ApiClient<Nothing, ResponseModels.UserFull>(
+                ResponseModels.UserFull::class,
+            )
 }
 
 sealed class HttpPut {

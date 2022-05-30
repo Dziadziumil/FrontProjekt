@@ -105,7 +105,7 @@ class LoginFragment : Fragment() {
                 is LoginResult.Success -> {
                     AccountService(requireContext()).let { service ->
                         service.addAccount(20)//it.value.id!!)
-                        service.setCurrentAccountToken(it.value.token!!)
+                        service.setCurrentAccountToken(it.value?.token!!)
                     }
 
                     handleLoginSuccess()
