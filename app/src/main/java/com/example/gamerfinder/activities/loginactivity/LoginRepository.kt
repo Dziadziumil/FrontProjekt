@@ -1,5 +1,6 @@
 package com.example.gamerfinder.activities.loginactivity
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.example.gamerfinder.utils.*
 import java.security.MessageDigest
@@ -9,7 +10,8 @@ class LoginRepository {
     fun login(
         username: String,
         password: String,
-        _loginResult: MutableLiveData<LoginResult<ResponseModels.AuthResponse>>
+        _loginResult: MutableLiveData<LoginResult<ResponseModels.AuthResponse>>,
+        context: Context
     ) {
         val hash = hashPassword(password)
 
@@ -25,7 +27,7 @@ class LoginRepository {
         }))
         
         println("sending request")
-        post.requestPost(RequestModels.AuthRequest(username,hash))
+        post.requestPost(RequestModels.AuthRequest(username,hash), context)
     }
 
     private fun hashPassword(password: String): String {

@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.passwordEditText
 
         binding.loginButton.setOnClickListener {
-            viewModel.login(username.text.toString(), password.text.toString())
+            viewModel.login(username.text.toString(), password.text.toString(),applicationContext)
         }
         binding.noAccountButton.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)

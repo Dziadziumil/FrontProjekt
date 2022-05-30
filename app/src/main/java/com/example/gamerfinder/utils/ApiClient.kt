@@ -1,5 +1,7 @@
 package com.example.gamerfinder.utils
 
+import android.accounts.Account
+import android.content.Context
 import kotlinx.serialization.*
 
 
@@ -27,8 +29,8 @@ val regex = Regex("\"type\":\"[^\"]*\",")
 
 sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
 
-    fun requestPost(req: Req?) {
-        privRequest(req)
+    fun requestPost(req: Req?, context: Context) {
+        privRequest(req, context)
     }
 
     fun addListener(event: HttpListener<Rsp>) {
@@ -37,8 +39,8 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
 
     lateinit var event: HttpListener<Rsp>
 
-    fun requestGet() {
-        privRequest(null)
+    fun requestGet(context: Context) {
+        privRequest(null, context)
     }
 
 
@@ -56,11 +58,12 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
 
     @OptIn(InternalSerializationApi::class)
     @Suppress("UNCHECKED_CAST")
-    private fun privRequest(requestBody: Req? = null) {
+    private fun privRequest(requestBody: Req? = null, context: Context) {
         val annotations = this.javaClass.annotations
         var apiUrl = (annotations.find { it is Api } as Api).path
         annotations.find { it is UseId }?.let {
-            apiUrl += "/1"
+
+            apiUrl += AccountService(context).getCurrentUserId()
         }
         thread {
             val url = "https://${Configs.serverIp}/api/$apiUrl"

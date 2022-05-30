@@ -71,7 +71,8 @@ class RegisterFragment : Fragment() {
                         email,
                         username,
                         passwordHash
-                    )
+                    ),
+                    requireContext()
                 )
 
             }

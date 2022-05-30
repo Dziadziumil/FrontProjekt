@@ -59,7 +59,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener {
-            viewModel.login(username.text.toString(), password.text.toString())
+            viewModel.login(username.text.toString(), password.text.toString(),requireContext())
         }
 
 
@@ -84,7 +84,7 @@ class LoginFragment : Fragment() {
             }))
 
             println("sending request")
-            post.requestPost(RequestModels.AuthRequest("string", "string"))
+            post.requestPost(RequestModels.AuthRequest("string", "string"),requireContext())
         }
 
         viewModel.loginStatus.observe(viewLifecycleOwner) {

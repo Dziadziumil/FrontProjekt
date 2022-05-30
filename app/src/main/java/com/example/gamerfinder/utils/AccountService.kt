@@ -13,6 +13,18 @@ import androidx.annotation.RequiresApi
 class AccountService(val context: Context) : Service() {
 
 
+    fun getCurrentUserId(): String {
+        AccountManager.get(context).let {
+            it.getAccountsByType("gamerFinder.user").let { arr ->
+                if (arr.size == 1) {
+                    return it.getUserData(arr[0], "id")
+                } else {
+                    throw IndexOutOfBoundsException("There was no active or too much users!")
+                }
+            }
+        }
+    }
+
     fun addAccount(id: Int, userName: String) {
         AccountManager.get(
             context

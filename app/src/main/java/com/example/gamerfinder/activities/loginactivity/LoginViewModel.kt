@@ -1,5 +1,6 @@
 package com.example.gamerfinder.activities.loginactivity
 
+import android.content.Context
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,18 +21,18 @@ class LoginViewModel : ViewModel() {
     private val _loginResult = MutableLiveData<LoginResult<ResponseModels.AuthResponse>>()
     val loginResult: LiveData<LoginResult<ResponseModels.AuthResponse>> = _loginResult
 
-    fun login(username: String, password: String) {
-        if(!isUsernameValid(username)) {
+    fun login(username: String, password: String, context: Context) {
+        if (!isUsernameValid(username)) {
             _loginStatus.value = LoginStatus(usernameError = R.string.invalid_username)
             return;
         }
-        if(!isPasswordValid(password)) {
+        if (!isPasswordValid(password)) {
             _loginStatus.value = LoginStatus(passwordError = R.string.invalid_password)
             return
         }
         _loginStatus.value = LoginStatus(isDataValid = true)
 
-        loginRepository.login(username, password, _loginResult)
+        loginRepository.login(username, password, _loginResult, context)
     }
 
     private fun isPasswordValid(password: String): Boolean {
