@@ -45,7 +45,6 @@ class ChangePasswordFragment : Fragment() {
         sharedViewModel.passwordUpdateResult.observe(viewLifecycleOwner) {
             when(it) {
                 is LoginResult.Success -> {
-                    sharedViewModel.resetValue()
                     val action = ChangePasswordFragmentDirections.actionChangePasswordFragmentToMyProfileFragment()
                     view.findNavController().navigate(action)
                 }

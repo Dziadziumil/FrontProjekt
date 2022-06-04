@@ -48,6 +48,19 @@ class MyProfileFragment : Fragment() {
             }
         }
 
+        sharedViewModel.passwordUpdateResult.observe(viewLifecycleOwner) {
+            when(it) {
+                is LoginResult.Success -> {
+                    Toast.makeText(requireContext(), "Password Changed", Toast.LENGTH_SHORT).show()
+                    sharedViewModel.resetValue()
+                }
+                is LoginResult.Error -> {
+                    sharedViewModel.resetValue()
+                }
+                null -> { }
+            }
+        }
+
         sharedViewModel.user.observe(viewLifecycleOwner) {
             binding.usernameEditText.setText(it.userName)
             binding.firstnameEditText.setText(it.firstName)
