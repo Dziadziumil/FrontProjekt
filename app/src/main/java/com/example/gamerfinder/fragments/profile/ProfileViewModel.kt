@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.gamerfinder.R
 import com.example.gamerfinder.activities.loginactivity.LoginResult
 import com.example.gamerfinder.utils.*
 import java.security.MessageDigest
@@ -33,7 +34,14 @@ class ProfileViewModel : ViewModel() {
         }.requestGet(context)
     }
 
-    fun updateUserData(username: String, firstName: String, secondName: String, email: String, context: Context) {
+    fun updateUserData(
+        username: String,
+        firstName: String,
+        secondName: String,
+        email: String,
+        birthDate: String,
+        gender: String,
+        context: Context) {
         HttpPut.UpdateUser.apply {
             this.addListener(HttpListener(object : Action<Nothing> {
                 override fun onMessage(isSuccess: Boolean, value: Nothing?) {
@@ -50,8 +58,8 @@ class ProfileViewModel : ViewModel() {
                 username,
                 firstName,
                 secondName,
-                _user.value?.birthDate,
-                _user.value?.gender
+                birthDate,
+                gender
             ),
             context
         )
