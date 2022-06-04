@@ -48,7 +48,7 @@ class MyProfileEditFragment : Fragment() {
         sharedViewModel.userUpdateResult.observe(viewLifecycleOwner) {
             when(it){
                 is LoginResult.Success -> {
-                    sharedViewModel.resetValue()
+                    //sharedViewModel.resetValue()
                     sharedViewModel.getUserData(requireContext())
                     val action = MyProfileEditFragmentDirections.actionMyProfileEditFragmentToMyProfileFragment()
                     view.findNavController().navigate(action)
@@ -56,9 +56,7 @@ class MyProfileEditFragment : Fragment() {
                 is LoginResult.Error -> {
                     Toast.makeText(context, it.error, Toast.LENGTH_SHORT).show()
                 }
-                else -> {
-
-                }
+                null -> { }
             }
         }
 

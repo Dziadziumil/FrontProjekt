@@ -20,7 +20,7 @@ sealed class ResponseModels {
 
     @Serializable
     data class UserFull(
-        val id: Int?,
+        val id: Int? = null,
         val userName: String?,
         val firstName: String?,
         val secondName: String?,
@@ -80,6 +80,16 @@ class RequestModels {
     ) : BaseModel() {
         override fun toString(): String {
             return "RegisterRequest(email=$email, userName=$userName, passwordHash=$passwordHash)"
+        }
+    }
+
+    @Serializable
+    data class UpdatePasswordRequest(
+        val passwordHash: String?,
+        val NewPasswordHash: String?
+    ) : BaseModel() {
+        override fun toString(): String {
+            return "UpdatePasswordRequest(passwordHash=$passwordHash, NewPasswordHash=$NewPasswordHash)"
         }
     }
 

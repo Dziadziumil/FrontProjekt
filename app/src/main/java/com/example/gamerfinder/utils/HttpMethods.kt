@@ -26,6 +26,13 @@ sealed class HttpPut {
         ApiClient<RequestModels.UserData, Nothing>(
             null,
         )
+
+    @Api("Users/password", HttpMethod.PUT)
+    @UseId
+    object UpdatePassword :
+            ApiClient<RequestModels.UpdatePasswordRequest, Nothing>(
+                null,
+            )
 }
 
 sealed class HttpPost {

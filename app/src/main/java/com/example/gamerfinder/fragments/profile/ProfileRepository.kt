@@ -33,7 +33,6 @@ class ProfileRepository {
         _userUpdateResult: MutableLiveData<LoginResult<Nothing>?>,
         context: Context
     ) {
-        //TODO call api with new user values to set
         HttpPut.UpdateUser.apply {
             this.addListener(HttpListener(object : Action<Nothing> {
                 override fun onMessage(isSuccess: Boolean, value: Nothing?) {

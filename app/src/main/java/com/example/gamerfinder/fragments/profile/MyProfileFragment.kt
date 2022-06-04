@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.example.gamerfinder.activities.loginactivity.LoginResult
 import com.example.gamerfinder.databinding.FragmentMyProfileBinding
 
 class MyProfileFragment : Fragment() {
@@ -33,6 +35,18 @@ class MyProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedViewModel.userUpdateResult.observe(viewLifecycleOwner) {
+            when(it){
+                is LoginResult.Success -> {
+                    Toast.makeText(requireContext(), "Update Successful", Toast.LENGTH_SHORT).show()
+                    sharedViewModel.resetValue()
+                }
+                is LoginResult.Error -> {
+                    sharedViewModel.resetValue()
+                }
+                null -> { }
+            }
+        }
 
         sharedViewModel.user.observe(viewLifecycleOwner) {
             binding.usernameEditText.setText(it.userName)
