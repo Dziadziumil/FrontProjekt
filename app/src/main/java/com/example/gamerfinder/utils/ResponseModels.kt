@@ -19,6 +19,17 @@ sealed class ResponseModels {
     }
 
     @Serializable
+    data class IdToken(
+        val id: Int?,
+        val token: String?
+    ) {
+        override fun toString(): String {
+            return "IdToken(id=$id, token=$token)"
+        }
+    }
+
+
+    @Serializable
     data class UserFull(
         val id: Int? = null,
         val userName: String?,

@@ -45,10 +45,10 @@ class RegisterFragment : Fragment() {
                 val passwordHash = getHash(binding.password.text.toString())
                 val handler = Handler(Looper.getMainLooper())
                 HttpPost.RegisterPost.apply {
-                    this.addListener(HttpListener(object : Action<ResponseModels.UserFull> {
+                    this.addListener(HttpListener(object : Action<ResponseModels.IdToken> {
                         override fun onMessage(
                             isSuccess: Boolean,
-                            value: ResponseModels.UserFull?
+                            value: ResponseModels.IdToken?
                         ) {
                             if (isSuccess) {
                                 AccountService(requireContext()).addAccount(

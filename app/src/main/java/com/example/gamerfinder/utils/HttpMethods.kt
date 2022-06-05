@@ -46,8 +46,8 @@ sealed class HttpPost {
 
     @Api("Users/register")
     object RegisterPost :
-        ApiClient<RequestModels.RegisterRequest, ResponseModels.UserFull>(
-            ResponseModels.UserFull::class,
+        ApiClient<RequestModels.RegisterRequest, ResponseModels.IdToken>(
+            ResponseModels.IdToken::class,
         )
 
 
