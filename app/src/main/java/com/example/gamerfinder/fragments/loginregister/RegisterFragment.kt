@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.example.gamerfinder.databinding.FragmentRegisterBinding
 import com.example.gamerfinder.utils.*
@@ -61,7 +62,9 @@ class RegisterFragment : Fragment() {
                                     view.findNavController().navigate(action)
                                 }
                             } else {
-                                println("register wasn't a success!")
+                                //println("register wasn't a success!")
+                                var dialog = CustomDialogFragment()
+                                dialog.show(childFragmentManager, "customDialog")
                             }
                         }
                     }))
