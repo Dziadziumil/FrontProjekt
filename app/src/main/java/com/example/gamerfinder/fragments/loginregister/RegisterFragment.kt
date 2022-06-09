@@ -1,11 +1,15 @@
 package com.example.gamerfinder.fragments.loginregister
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
@@ -37,6 +41,9 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.termsOfService.setOnCheckedChangeListener { buttonView, isChecked ->
+            hideKeyboard()
+        }
 
         binding.button.setOnClickListener {
             val isCorrect = checkRegisterData(view)
@@ -112,6 +119,19 @@ class RegisterFragment : Fragment() {
             isCorrect = false
         }
         return isCorrect
+    }
+
+    fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    fun Activity.hideKeyboard() {
+        hideKeyboard(currentFocus ?: View(this))
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     override fun onDestroy() {
