@@ -84,7 +84,9 @@ class RegisterContinueFragment : Fragment() {
                                     view.findNavController().navigate(actionNo)
                                 }
                             } else {
-                                println("register wasn't a success!")
+                                //println("register wasn't a success!")
+                                var dialog = CustomDialogFragment()
+                                dialog.show(childFragmentManager, "customDialog")
                             }
                         }
                     }))
@@ -124,7 +126,9 @@ class RegisterContinueFragment : Fragment() {
                                             view.findNavController().navigate(actionNo)
                                         }
                                     } else {
-                                        println("register wasn't a success!")
+                                        //println("register wasn't a success!")
+                                        var dialog = CustomDialogFragment()
+                                        dialog.show(childFragmentManager, "customDialog")
                                     }
                                 }
                             }))

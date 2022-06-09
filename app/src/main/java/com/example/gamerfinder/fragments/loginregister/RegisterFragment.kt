@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.example.gamerfinder.databinding.FragmentRegisterBinding
 import com.example.gamerfinder.utils.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.security.MessageDigest
 
 class RegisterFragment : Fragment() {

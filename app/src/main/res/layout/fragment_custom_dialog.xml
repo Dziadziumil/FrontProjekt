@@ -11,7 +11,7 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="  Registration failed"
+        android:text="  Sorry, something went wrong.\n  Registration failed."
         android:textAlignment="textStart"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
