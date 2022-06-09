@@ -50,7 +50,6 @@ class RegisterContinueFragment : Fragment() {
             isCorrect = false
         }
         if (cYear - binding.personBirth.year > 118) {
-            binding.DateLayout.error = "You can't be that old."
             isCorrectSerious = false
         }
         var gender: String? = null
@@ -147,6 +146,13 @@ class RegisterContinueFragment : Fragment() {
                     }
                     .show()
             }
+        }
+        else {
+            MaterialAlertDialogBuilder(requireActivity())
+                .setTitle("Alert")
+                .setMessage("You can't be that old!")
+                .setNeutralButton("Okay") { _, _ ->}
+                .show()
         }
     }
 
