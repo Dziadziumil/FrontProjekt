@@ -1,6 +1,7 @@
 package com.example.gamerfinder.fragments.profile
 
 import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -90,6 +91,10 @@ class ProfileViewModel : ViewModel() {
 
     fun isPasswordValid(currentPassword: String, newPassword: String): Boolean {
         return currentPassword != newPassword && newPassword.length > 1
+    }
+
+    fun deleteAccount(context: Context) {
+        Toast.makeText(context, "deleting account", Toast.LENGTH_SHORT).show()
     }
 
     private fun hashPassword(password: String): String {
