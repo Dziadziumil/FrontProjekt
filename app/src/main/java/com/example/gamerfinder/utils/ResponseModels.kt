@@ -2,6 +2,7 @@
 
 package com.example.gamerfinder.utils
 
+import com.example.gamerfinder.fragments.games.Game
 import kotlinx.serialization.UseSerializers
 
 import kotlinx.serialization.Serializable
@@ -54,8 +55,21 @@ sealed class ResponseModels {
         }
     }
 
+    @Serializable
+    data class GamesList(
+        val games: List<Game>?
+    ) {
+        override fun toString(): String {
+            return "GamesList(games=$games)"
+        }
+    }
 }
 
+//@Serializable
+//data class Game(
+//    val id: Int?,
+//    val gameName: String
+//)
 
 class RequestModels {
 

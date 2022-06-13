@@ -25,7 +25,6 @@ class MyProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println("on create")
     }
 
     override fun onCreateView(
@@ -33,7 +32,6 @@ class MyProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMyProfileBinding.inflate(inflater, container, false)
-        println("view created")
         return binding.root
     }
 

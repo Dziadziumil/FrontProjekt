@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TestFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/test_button"
+    <data>
+
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="test"
-        android:layout_marginTop="100dp"
-        android:layout_marginHorizontal="@dimen/default_padding"
-        />
+        android:layout_height="match_parent"
+        tools:context=".TestFragment">
 
-</FrameLayout>
+        <Button
+            android:id="@+id/test_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="test"
+            android:layout_marginTop="100dp"
+            android:layout_marginHorizontal="@dimen/default_padding" />
+
+    </FrameLayout>
+</layout>

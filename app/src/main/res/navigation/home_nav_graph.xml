@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/myProfileFragment">
+    app:startDestination="@id/gamesListFragment">
 
     <fragment
         android:id="@+id/myProfileFragment"
@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_myProfileFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_gamesListFragment"
+            app:destination="@id/gamesListFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileEditFragment"
@@ -38,6 +41,15 @@
         tools:layout="@layout/fragment_change_password" >
         <action
             android:id="@+id/action_changePasswordFragment_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gamesListFragment"
+        android:name="com.example.gamerfinder.fragments.games.GamesFragment"
+        android:label="fragment_games_list"
+        tools:layout="@layout/fragment_games" >
+        <action
+            android:id="@+id/action_gamesListFragment_to_myProfileFragment"
             app:destination="@id/myProfileFragment" />
     </fragment>
 </navigation>

@@ -1,7 +1,9 @@
 package com.example.gamerfinder.fragments.profile
 
+import android.app.Application
 import android.content.Context
 import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +12,11 @@ import com.example.gamerfinder.activities.loginactivity.LoginResult
 import com.example.gamerfinder.utils.*
 import java.security.MessageDigest
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(application: Application) : AndroidViewModel(application) {
+
+    init {
+        getUserData(application.applicationContext)
+    }
 
     private val _user = MutableLiveData<ResponseModels.UserFull>()
     val user: LiveData<ResponseModels.UserFull> = _user

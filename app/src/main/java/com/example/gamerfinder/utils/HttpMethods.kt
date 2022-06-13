@@ -16,6 +16,12 @@ sealed class HttpGet {
             ApiClient<Nothing, ResponseModels.UserFull>(
                 ResponseModels.UserFull::class,
             )
+
+    @Api("GameDictionaries")
+    object GetGames :
+            ApiClient<Nothing, ResponseModels.GamesList>(
+                ResponseModels.GamesList::class,
+            )
 }
 
 sealed class HttpPut {

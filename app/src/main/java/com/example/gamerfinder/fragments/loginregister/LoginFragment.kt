@@ -22,16 +22,10 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var userPreferences: UserPreferences
-
-    private var _authToken: String? = null
-    private val authToken get() = _authToken
-
     private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userPreferences = UserPreferences(requireContext())
     }
 
     override fun onCreateView(
