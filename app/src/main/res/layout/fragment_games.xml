@@ -14,16 +14,60 @@
         android:layout_height="match_parent"
         tools:context=".fragments.games.GamesFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/games_recycler_view"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:scrollbars="vertical"
-            app:layoutManager="LinearLayoutManager"
-            app:listData="@{viewModel.games}"
-            tools:itemCount="16"
-            tools:listitem="@layout/games_list_item"/>
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@color/md_theme_dark_inversePrimary"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <Button
+                    android:id="@+id/button13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:icon="@drawable/ic_baseline_star_24"
+                    app:iconGravity="textEnd"
+                    app:iconSize="45dp" />
+
+                <Button
+                    android:id="@+id/buttonToSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:icon="@drawable/ic_baseline_search_24"
+                    app:iconGravity="textEnd"
+                    app:iconSize="45dp" />
+
+                <Button
+                    android:id="@+id/button_to_my_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:icon="@drawable/ic_baseline_person_24"
+                    app:iconGravity="textEnd"
+                    app:iconSize="45dp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/games_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="70dp"
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                app:layoutManager="LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:listData="@{viewModel.games}"
+                tools:itemCount="16"
+                tools:layout_editor_absoluteX="-37dp"
+                tools:listitem="@layout/games_list_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--    <TextView-->
         <!--        android:id="@+id/test_text"-->

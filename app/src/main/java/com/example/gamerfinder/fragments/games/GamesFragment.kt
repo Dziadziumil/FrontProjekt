@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.example.gamerfinder.databinding.FragmentGamesBinding
+import com.example.gamerfinder.fragments.loginregister.StartFragmentDirections
 
 class GamesFragment : Fragment() {
 
@@ -34,6 +36,11 @@ class GamesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonToMyProfile.setOnClickListener {
+            val action = GamesFragmentDirections.actionGamesListFragmentToMyProfileFragment()
+            view.findNavController().navigate(action);
+        }
 
         viewModel.games.observe(viewLifecycleOwner) {
             println(it)

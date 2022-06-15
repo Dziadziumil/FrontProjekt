@@ -103,5 +103,10 @@ class MyProfileFragment : Fragment() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             requireContext().startActivity(intent)
         }
+
+        binding.buttonToFavourites3.setOnClickListener {
+            val action = MyProfileFragmentDirections.actionMyProfileFragmentToGamesListFragment()
+            view.findNavController().navigate(action)
+        }
     }
 }
