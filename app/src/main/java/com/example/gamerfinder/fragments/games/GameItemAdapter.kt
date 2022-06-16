@@ -27,7 +27,7 @@ class GameItemAdapter : ListAdapter<Game, GameItemAdapter.GameViewHolder>(DiffCa
         viewType: Int
     ): GameItemAdapter.GameViewHolder {
         return GameViewHolder(GamesListItemBinding.inflate(
-            LayoutInflater.from(parent.context)
+            LayoutInflater.from(parent.context),parent,false
         ))
     }
 
