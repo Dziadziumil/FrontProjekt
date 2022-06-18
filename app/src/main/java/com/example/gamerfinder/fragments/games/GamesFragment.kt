@@ -29,9 +29,15 @@ class GamesFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        binding.gamesRecyclerView.adapter = GameItemAdapter()
+        binding.gamesRecyclerView.adapter = GameItemAdapter {
+            onRecyclerButtonClick(it)
+        }
 
         return binding.root
+    }
+
+    fun onRecyclerButtonClick(game: Game) {
+        println(game)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

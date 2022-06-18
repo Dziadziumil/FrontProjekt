@@ -1,23 +1,24 @@
 package com.example.gamerfinder.fragments.games
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gamerfinder.R
 import com.example.gamerfinder.databinding.GamesListItemBinding
 
-class GameItemAdapter : ListAdapter<Game, GameItemAdapter.GameViewHolder>(DiffCallback) {
+class GameItemAdapter(private val onClick: (Game) -> Unit) :
+    ListAdapter<Game, GameItemAdapter.GameViewHolder>(DiffCallback) {
 
     class GameViewHolder(
-        private var binding: GamesListItemBinding
+        private var binding: GamesListItemBinding,
+        private val onClick: (Game) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(Game: Game) {
-            binding.game = Game
+        fun bind(game: Game) {
+            binding.game = game
+            binding.button.setOnClickListener {
+                onClick.invoke(game)
+            }
             binding.executePendingBindings()
         }
     }
@@ -26,9 +27,12 @@ class GameItemAdapter : ListAdapter<Game, GameItemAdapter.GameViewHolder>(DiffCa
         parent: ViewGroup,
         viewType: Int
     ): GameItemAdapter.GameViewHolder {
-        return GameViewHolder(GamesListItemBinding.inflate(
-            LayoutInflater.from(parent.context),parent,false
-        ))
+        return GameViewHolder(
+            GamesListItemBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            ),
+            onClick
+        )
     }
 
     override fun onBindViewHolder(holder: GameItemAdapter.GameViewHolder, position: Int) {

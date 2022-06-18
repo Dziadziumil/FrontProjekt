@@ -19,7 +19,7 @@ class LoginRepository {
         post.addListener(HttpListener(object : Action<ResponseModels.AuthResponse> {
             override fun onMessage(isSuccess: Boolean, value: ResponseModels.AuthResponse?) {
                 value?.let {
-                    _loginResult.postValue(LoginResult.Success<ResponseModels.AuthResponse>(value))
+                    _loginResult.postValue(LoginResult.Success(value))
                 }
                 if(!isSuccess)
                     _loginResult.postValue(LoginResult.Error("Something went wrong"))
