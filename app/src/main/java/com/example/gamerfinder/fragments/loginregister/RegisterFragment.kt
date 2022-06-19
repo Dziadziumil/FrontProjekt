@@ -7,16 +7,15 @@ import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.CheckBox
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.example.gamerfinder.databinding.FragmentRegisterBinding
 import com.example.gamerfinder.utils.*
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.security.MessageDigest
+
 
 class RegisterFragment : Fragment() {
 
@@ -44,6 +43,17 @@ class RegisterFragment : Fragment() {
 
         binding.termsOfService.setOnCheckedChangeListener { buttonView, isChecked ->
             hideKeyboard()
+        }
+
+        binding.termsOfService.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                if (binding.termsOfService.isChecked) {
+                    binding.termsOfService.setChecked(false);
+                }
+                else {
+                    binding.termsOfService.setChecked(true);
+                }
+            }
         }
 
         binding.button.setOnClickListener {
@@ -116,7 +126,6 @@ class RegisterFragment : Fragment() {
         }
         if (!binding.termsOfService.isChecked) {
             binding.termsOfService.error = "Please accept the rules!"
-            binding.termsOfService.requestFocus()
             isCorrect = false
         }
         return isCorrect
