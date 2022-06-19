@@ -51,6 +51,19 @@ class AccountService(val context: Context) : Service() {
         }
     }
 
+    fun deleteAccount() {
+        AccountManager.get(context).let {
+            it.getAccountsByType("gamerFinder.user").let { arr ->
+                arr.forEach { account ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                        it.removeAccountExplicitly(account)
+                    }
+                }
+            }
+        }
+    }
+
+
     fun addAccount(id: Int) {
         AccountManager.get(
             context
@@ -68,8 +81,8 @@ class AccountService(val context: Context) : Service() {
                     }
                     1 -> {
                         val newName = id.toString()
-                        if(arr[0].name!=newName)
-                        it.renameAccount(arr[0], newName, null, null)
+                        if (arr[0].name != newName)
+                            it.renameAccount(arr[0], newName, null, null)
                         // it.setUserData(arr[0], "id", it.toString())
                     }
                     else -> {

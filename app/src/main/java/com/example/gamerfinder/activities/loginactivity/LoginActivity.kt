@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
             get.request(event)
         }*/
 
-        viewModel.loginStatus.observe(this, Observer {
+        viewModel.loginStatus.observe(this) {
             if (it.usernameError != null) {
                 binding.usernameLayout.error = getString(it.usernameError)
             }
@@ -70,10 +70,10 @@ class LoginActivity : AppCompatActivity() {
                 binding.passwordLayout.error = null
                 binding.usernameLayout.error = null
             }
-        })
+        }
 
-        viewModel.loginResult.observe(this, Observer {
-            when(it) {
+        viewModel.loginResult.observe(this) {
+            when (it) {
                 is LoginResult.Success -> {
                     Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_SHORT).show()
                 }
@@ -81,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
-        })
+        }
     }
 
     fun handleLoginSuccess() {

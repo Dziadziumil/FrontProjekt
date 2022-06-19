@@ -13,15 +13,15 @@ sealed class HttpGet {
     @Api("Users")
     @UseId
     object GetUser :
-            ApiClient<Nothing, ResponseModels.UserFull>(
-                ResponseModels.UserFull::class,
-            )
+        ApiClient<Nothing, ResponseModels.UserFull>(
+            ResponseModels.UserFull::class,
+        )
 
     @Api("GameDictionaries")
     object GetGames :
-            ApiClient<Nothing, ResponseModels.GamesList>(
-                ResponseModels.GamesList::class,
-            )
+        ApiClient<Nothing, ResponseModels.GamesList>(
+            ResponseModels.GamesList::class,
+        )
 }
 
 sealed class HttpPut {
@@ -36,12 +36,18 @@ sealed class HttpPut {
     @Api("Users/password", HttpMethod.PUT)
     @UseId
     object UpdatePassword :
-            ApiClient<RequestModels.UpdatePasswordRequest, Nothing>(
-                null,
-            )
+        ApiClient<RequestModels.UpdatePasswordRequest, Nothing>(
+            null,
+        )
 }
 
 sealed class HttpPost {
+
+    @Api("Lobbies")
+    object CreateLobbyPost :
+        ApiClient<RequestModels.CreateLobbyRequest, ResponseModels.CreatedLobby>(
+            ResponseModels.CreatedLobby::class
+        )
 
     @Api("Auth")
     //@UseId

@@ -67,14 +67,14 @@ sealed class ResponseModels {
     @Serializable
     data class CreatedLobby(
         val id: Int?,
-        val title: String?,
+        val tittle: String?,
         val gameId: Int?,
         val ownerId: Int?,
         val description: String?,
         val maxUser: Int?
     ) {
         override fun toString(): String {
-            return "CreatedLobby(id=$id, title=$title, gameId=$gameId, ownerId=$ownerId, description=$description, maxUser=$maxUser)"
+            return "CreatedLobby(id=$id, title=$tittle, gameId=$gameId, ownerId=$ownerId, description=$description, maxUser=$maxUser)"
         }
     }
 }
@@ -134,14 +134,14 @@ class RequestModels {
 
     @Serializable
     data class CreateLobbyRequest(
-        val title: String?,
+        val tittle: String?,
         val gameId: Int?,
         val ownerId: Int?,
         val description: String?,
         val maxUser: Int?
     ) : BaseModel() {
         override fun toString(): String {
-            return "CreateLobbyRequest(title=$title, gameId=$gameId, ownerId=$ownerId, description=$description, maxUser=$maxUser)"
+            return "CreateLobbyRequest(title=$tittle, gameId=$gameId, ownerId=$ownerId, description=$description, maxUser=$maxUser)"
         }
     }
 

@@ -14,6 +14,7 @@ import com.example.gamerfinder.MainActivity
 import com.example.gamerfinder.R
 import com.example.gamerfinder.activities.loginactivity.LoginResult
 import com.example.gamerfinder.databinding.FragmentMyProfileBinding
+import com.example.gamerfinder.utils.AccountService
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MyProfileFragment : Fragment() {
@@ -99,6 +100,7 @@ class MyProfileFragment : Fragment() {
         binding.logoutButton.setOnClickListener {
             //todo might need to remove user and token from account manager
             // but didn't figure out how yet
+            //AccountService().de
             val intent = Intent(context, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             requireContext().startActivity(intent)
