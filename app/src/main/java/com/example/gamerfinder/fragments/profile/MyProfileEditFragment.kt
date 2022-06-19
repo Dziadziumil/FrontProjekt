@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import com.example.gamerfinder.R
 import com.example.gamerfinder.activities.loginactivity.LoginResult
 import com.example.gamerfinder.databinding.FragmentMyProfileEditBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
 
 class MyProfileEditFragment : Fragment() {
@@ -73,8 +74,11 @@ class MyProfileEditFragment : Fragment() {
 
         binding.confirmButton.setOnClickListener {
             var isDataValid = true
+            var isDataValidForSure = true
+
             if(username.text.toString().length < 2) {
                 binding.usernameLayout.error = getString(R.string.invalid_username)
+                isDataValidForSure = false
                 isDataValid = false
             }
             if(firstName.text.toString().length < 2) {
@@ -94,9 +98,9 @@ class MyProfileEditFragment : Fragment() {
             }-${
                 binding.birthDate.month.toString().padStart(2, '0')
             }-${binding.birthDate.dayOfMonth.toString().padStart(2, '0')}T00:00:00"
-            if(Calendar.getInstance().get(Calendar.YEAR) - binding.birthDate.year < 13) {
-                binding.birthDateLayout.error = getString(R.string.birthDate_error)
-                isDataValid = false
+            if(Calendar.getInstance().get(Calendar.YEAR) - binding.birthDate.year > 118) {
+                binding.birthDateLayout.error = "You can't be that old!"
+                isDataValidForSure = false
             }
             var gender = ""
             when {
@@ -104,20 +108,40 @@ class MyProfileEditFragment : Fragment() {
                 binding.radioMale.isChecked -> gender = "Male"
                 binding.radioOther.isChecked -> gender = "Other"
                 else -> {
-                    binding.genderLayout.error = getString(R.string.gender_error)
+                    //binding.genderLayout.error = getString(R.string.gender_error)
                     isDataValid = false
                 }
             }
-            if(isDataValid) {
-                sharedViewModel.updateUserData(
-                    username.text.toString(),
-                    firstName.text.toString(),
-                    secondName.text.toString(),
-                    email.text.toString(),
-                    birthDate,
-                    gender,
-                    requireContext()
-                )
+            if(isDataValidForSure) {
+                if(isDataValid) {
+                    sharedViewModel.updateUserData(
+                        username.text.toString(),
+                        firstName.text.toString(),
+                        secondName.text.toString(),
+                        email.text.toString(),
+                        birthDate,
+                        gender,
+                        requireContext()
+                    )
+                }
+                else {
+                    MaterialAlertDialogBuilder(requireActivity())
+                        .setTitle("Alert")
+                        .setMessage("Not all fields have been filled in, are you sure you want to continue?")
+                        .setNegativeButton("No") { _, _ ->}
+                        .setPositiveButton("Yes") {dialog, which ->
+                            sharedViewModel.updateUserData(
+                                username.text.toString(),
+                                firstName.text.toString(),
+                                secondName.text.toString(),
+                                email.text.toString(),
+                                birthDate,
+                                gender,
+                                requireContext()
+                            )
+                        }
+                        .show()
+                }
             }
         }
     }
