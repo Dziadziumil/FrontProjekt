@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.gamerfinder.R
 import com.example.gamerfinder.databinding.FragmentGamesBinding
 import com.example.gamerfinder.fragments.loginregister.StartFragmentDirections
 
@@ -50,6 +52,10 @@ class GamesFragment : Fragment() {
 
         viewModel.games.observe(viewLifecycleOwner) {
             println(it)
+        }
+
+        binding.fabCreateLobby.setOnClickListener {
+            findNavController().navigate(R.id.action_gamesListFragment_to_createLobbyFragment)
         }
     }
 }

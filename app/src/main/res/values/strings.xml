@@ -55,4 +55,9 @@
     <string name="delete_dialog_title">Delete the account?</string>
     <string name="delete_dialog_message">You are about to delete your account. This action is not reversable. Are you sure you want to proceed?</string>
     <string name="delete">Delete</string>
+    <string name="prompt_title">Title</string>
+    <string name="prompt_description">Description</string>
+    <string name="create_lobby_title">Create new lobby</string>
+    <string name="prompt_lobby_size">Lobby size</string>
+    <string name="create">Create</string>
 </resources>

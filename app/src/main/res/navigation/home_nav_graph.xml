@@ -51,5 +51,20 @@
         <action
             android:id="@+id/action_gamesListFragment_to_myProfileFragment"
             app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_gamesListFragment_to_createLobbyFragment"
+            app:destination="@id/createLobbyFragment"
+            app:enterAnim="@anim/slide_up_in"
+            app:popExitAnim="@anim/slide_down_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/createLobbyFragment"
+        android:name="com.example.gamerfinder.fragments.lobbies.CreateLobbyFragment"
+        android:label="fragment_create_lobby"
+        tools:layout="@layout/fragment_create_lobby" >
+        <action
+            android:id="@+id/action_createLobbyFragment_to_gamesListFragment"
+            app:destination="@id/gamesListFragment"
+            app:exitAnim="@anim/slide_down_out" />
     </fragment>
 </navigation>
