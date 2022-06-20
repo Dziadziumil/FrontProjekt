@@ -36,7 +36,7 @@ val regex = Regex("\"type\":\"[^\"]*\",")
 sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
 
     fun requestPost(req: Req?, context: Context, id: String? = null) {
-        privRequest(req, context)
+        privRequest(req, context, id)
     }
 
     fun addListener(event: HttpListener<Rsp>) {
