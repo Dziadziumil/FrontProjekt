@@ -52,10 +52,8 @@
             android:id="@+id/action_gamesListFragment_to_myProfileFragment"
             app:destination="@id/myProfileFragment" />
         <action
-            android:id="@+id/action_gamesListFragment_to_createLobbyFragment"
-            app:destination="@id/createLobbyFragment"
-            app:enterAnim="@anim/slide_up_in"
-            app:popExitAnim="@anim/slide_down_out" />
+            android:id="@+id/action_gamesListFragment_to_lobbiesFragment"
+            app:destination="@id/lobbiesFragment" />
     </fragment>
     <fragment
         android:id="@+id/createLobbyFragment"
@@ -63,8 +61,34 @@
         android:label="fragment_create_lobby"
         tools:layout="@layout/fragment_create_lobby" >
         <action
-            android:id="@+id/action_createLobbyFragment_to_gamesListFragment"
-            app:destination="@id/gamesListFragment"
-            app:exitAnim="@anim/slide_down_out" />
+            android:id="@+id/action_createLobbyFragment_to_lobbiesFragment"
+            app:destination="@id/lobbiesFragment"
+            app:enterAnim="@anim/slide_down_in"
+            app:exitAnim="@anim/slide_down_out"
+            app:popUpTo="@id/lobbiesFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="gameId"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/lobbiesFragment"
+        android:name="com.example.gamerfinder.fragments.lobbies.LobbiesFragment"
+        android:label="fragment_lobbies"
+        tools:layout="@layout/fragment_lobbies" >
+        <argument
+            android:name="gameId"
+            app:argType="integer" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_lobbiesFragment_to_createLobbyFragment"
+            app:destination="@id/createLobbyFragment"
+            app:enterAnim="@anim/slide_up_in"
+            app:popExitAnim="@anim/slide_down_out" />
     </fragment>
 </navigation>

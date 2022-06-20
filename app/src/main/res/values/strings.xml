@@ -15,6 +15,7 @@
     <string name="prompt_change_password">Change Password</string>
     <string name="prompt_current_password">Current password</string>
     <string name="prompt_new_password">New Password</string>
+    <string name="lobby_curent_max">%1$s/%2$s</string>
 
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
@@ -62,4 +63,5 @@
     <string name="create_lobby_title">Create new lobby</string>
     <string name="prompt_lobby_size">Lobby size</string>
     <string name="create">Create</string>
+    <string name="join">Join</string>
 </resources>

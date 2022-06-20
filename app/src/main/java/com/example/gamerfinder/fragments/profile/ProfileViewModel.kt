@@ -38,7 +38,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
                     }
                 }
             }))
-        }.requestGet(context)
+        }.requestGet(context, AccountService(context).getCurrentUserId())
     }
 
     fun updateUserData(
@@ -68,7 +68,8 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
                 birthDate,
                 gender
             ),
-            context
+            context,
+            AccountService(context).getCurrentUserId()
         )
     }
 
@@ -91,7 +92,8 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
                 passwordHash,
                 newPasswordHash
             ),
-            context
+            context,
+            AccountService(context).getCurrentUserId()
         )
     }
 

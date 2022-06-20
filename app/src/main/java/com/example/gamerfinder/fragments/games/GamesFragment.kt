@@ -31,9 +31,7 @@ class GamesFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        binding.gamesRecyclerView.adapter = GameItemAdapter {
-            onRecyclerButtonClick(it)
-        }
+        binding.gamesRecyclerView.adapter = GameItemAdapter()
 
         return binding.root
     }
@@ -52,10 +50,6 @@ class GamesFragment : Fragment() {
 
         viewModel.games.observe(viewLifecycleOwner) {
             println(it)
-        }
-
-        binding.fabCreateLobby.setOnClickListener {
-            findNavController().navigate(R.id.action_gamesListFragment_to_createLobbyFragment)
         }
     }
 }

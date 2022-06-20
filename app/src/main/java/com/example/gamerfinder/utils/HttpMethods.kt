@@ -22,6 +22,13 @@ sealed class HttpGet {
         ApiClient<Nothing, ResponseModels.GamesList>(
             ResponseModels.GamesList::class,
         )
+
+    @Api("Lobbies")
+    @UseId
+    object GetLobbies :
+            ApiClient<Nothing, ResponseModels.LoobiesList>(
+                ResponseModels.LoobiesList::class
+            )
 }
 
 sealed class HttpPut {

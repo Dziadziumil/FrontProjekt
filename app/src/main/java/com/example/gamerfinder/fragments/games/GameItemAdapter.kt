@@ -2,22 +2,23 @@ package com.example.gamerfinder.fragments.games
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamerfinder.databinding.GamesListItemBinding
 
-class GameItemAdapter(private val onClick: (Game) -> Unit) :
-    ListAdapter<Game, GameItemAdapter.GameViewHolder>(DiffCallback) {
+class GameItemAdapter : ListAdapter<Game, GameItemAdapter.GameViewHolder>(DiffCallback) {
 
     class GameViewHolder(
-        private var binding: GamesListItemBinding,
-        private val onClick: (Game) -> Unit
+        private var binding: GamesListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(game: Game) {
             binding.game = game
             binding.button.setOnClickListener {
-                onClick.invoke(game)
+                //println(game.id)
+                val action = GamesFragmentDirections.actionGamesListFragmentToLobbiesFragment(gameId = game.id, gameName = game.gameName)
+                itemView.findNavController().navigate(action)
             }
             binding.executePendingBindings()
         }
@@ -30,8 +31,7 @@ class GameItemAdapter(private val onClick: (Game) -> Unit) :
         return GameViewHolder(
             GamesListItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
-            ),
-            onClick
+            )
         )
     }
 

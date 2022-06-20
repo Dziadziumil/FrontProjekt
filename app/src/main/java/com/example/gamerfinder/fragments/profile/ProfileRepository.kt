@@ -21,7 +21,7 @@ class ProfileRepository {
                     }
                 }
             }))
-        }.requestGet(context)
+        }.requestGet(context, AccountService(context).getCurrentUserId())
     }
 
     fun updateUserData(
@@ -52,7 +52,8 @@ class ProfileRepository {
                 _user.value?.birthDate,
                 _user.value?.gender
             ),
-            context
+            context,
+            AccountService(context).getCurrentUserId()
         )
     }
 

@@ -35,7 +35,7 @@ val regex = Regex("\"type\":\"[^\"]*\",")
 
 sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
 
-    fun requestPost(req: Req?, context: Context) {
+    fun requestPost(req: Req?, context: Context, id: String? = null) {
         privRequest(req, context)
     }
 
@@ -45,8 +45,8 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
 
     lateinit var event: HttpListener<Rsp>
 
-    fun requestGet(context: Context) {
-        privRequest(null, context)
+    fun requestGet(context: Context, id: String? = null) {
+        privRequest(null, context, id)
     }
 
 
@@ -64,13 +64,13 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
 
     @OptIn(InternalSerializationApi::class)
     @Suppress("UNCHECKED_CAST")
-    private fun privRequest(requestBody: Req? = null, context: Context) {
+    private fun privRequest(requestBody: Req? = null, context: Context, id: String? = null) {
         val annotations = this.javaClass.annotations
         val annotation = (annotations.find { it is Api } as Api)
         var apiUrl = annotation.path
         val accService = AccountService(context)
         annotations.find { it is UseId }?.let {
-            apiUrl += "/${accService.getCurrentUserId()}"
+            apiUrl += "/${id}"
         }
         val useToken = annotations.any { it is UseToken }
 

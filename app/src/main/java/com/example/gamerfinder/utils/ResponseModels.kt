@@ -3,6 +3,7 @@
 package com.example.gamerfinder.utils
 
 import com.example.gamerfinder.fragments.games.Game
+import com.example.gamerfinder.fragments.lobbies.Lobby
 import kotlinx.serialization.UseSerializers
 
 import kotlinx.serialization.Serializable
@@ -77,6 +78,11 @@ sealed class ResponseModels {
             return "CreatedLobby(id=$id, title=$tittle, gameId=$gameId, ownerId=$ownerId, description=$description, maxUser=$maxUser)"
         }
     }
+
+    @Serializable
+    data class LoobiesList(
+        val lobbies: List<Lobby>?
+    )
 }
 
 //@Serializable
