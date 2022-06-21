@@ -86,15 +86,16 @@
                     android:layout_marginTop="-20dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="@dimen/default_padding"
-                    app:errorEnabled="true"
-                    android:minHeight="48dp">
+                    android:minHeight="48dp"
+                    app:endIconMode="password_toggle"
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/password_input"
                         android:ems="10"
+                        android:hint="@string/password_input"
                         android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -109,6 +110,7 @@
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="0dp"
                     android:minHeight="48dp"
+                    app:endIconMode="password_toggle"
                     app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
