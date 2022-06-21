@@ -99,7 +99,7 @@ class RegisterContinueFragment : Fragment() {
                         "${
                             binding.personBirth.year.toString().padStart(4, '0')
                         }-${
-                            binding.personBirth.month.toString().padStart(2, '0')
+                            (binding.personBirth.month+1).toString().padStart(2, '0')
                         }-${binding.personBirth.dayOfMonth.toString().padStart(2, '0')}T00:00:00",
                         gender
                     ),

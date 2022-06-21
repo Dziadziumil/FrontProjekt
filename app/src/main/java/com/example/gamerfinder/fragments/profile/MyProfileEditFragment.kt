@@ -93,11 +93,13 @@ class MyProfileEditFragment : Fragment() {
                 binding.emailLayout.error = getString(R.string.email_error)
                 isDataValid = false
             }
+            println(binding.birthDate.month)
             val birthDate = "${
                 binding.birthDate.year.toString().padStart(4, '0')
             }-${
-                binding.birthDate.month.toString().padStart(2, '0')
+                (binding.birthDate.month+1).toString().padStart(2, '0')
             }-${binding.birthDate.dayOfMonth.toString().padStart(2, '0')}T00:00:00"
+            println(birthDate)
             if(Calendar.getInstance().get(Calendar.YEAR) - binding.birthDate.year > 118) {
                 binding.birthDateLayout.error = "You can't be that old!"
                 isDataValidForSure = false
