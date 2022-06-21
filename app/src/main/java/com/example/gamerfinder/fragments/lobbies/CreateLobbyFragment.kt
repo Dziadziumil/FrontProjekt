@@ -14,6 +14,7 @@ import com.example.gamerfinder.R
 import com.example.gamerfinder.activities.loginactivity.LoginResult
 import com.example.gamerfinder.activities.loginactivity.LoginViewModel
 import com.example.gamerfinder.databinding.FragmentCreateLobbyBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlin.properties.Delegates
 
 private const val GAME_ID = "gameId"
@@ -63,19 +64,29 @@ class CreateLobbyFragment : Fragment() {
 
         viewModel.createLobbyResult.observe(viewLifecycleOwner) {
             when (it) {
-                is LobbyCreateResult.Error -> Toast.makeText(
+                /*is LobbyCreateResult.Error -> Toast.makeText(
                     requireContext(),
                     it.toString(),
                     Toast.LENGTH_SHORT
-                ).show()
+                ).show()*/
+                is LobbyCreateResult.Error -> MaterialAlertDialogBuilder(requireActivity())
+                    .setTitle("Alert")
+                    .setMessage("An error occurred. The lobby has not been created.")
+                    .setNeutralButton("OK"){_,_->}
+                    .show()
                 is LobbyCreateResult.Success -> {
                     val action = CreateLobbyFragmentDirections.actionCreateLobbyFragmentToLobbiesFragment(gameId!!, gameName)
                     findNavController().navigate(action)
-                    Toast.makeText(
+                    /*Toast.makeText(
                         requireContext(),
                         it.toString(),
                         Toast.LENGTH_SHORT
-                    ).show()
+                    ).show()*/
+                    MaterialAlertDialogBuilder(requireActivity())
+                        .setTitle("Alert")
+                        .setMessage("New lobby successfully created!")
+                        .setNeutralButton("OK"){_, _->}
+                        .show()
                 }
             }
         }

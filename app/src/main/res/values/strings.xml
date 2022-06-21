@@ -56,7 +56,7 @@
     <string name="prompt_other">Other</string>
     <string name="log_out">log out</string>
     <string name="delete_dialog_title">Delete the account?</string>
-    <string name="delete_dialog_message">You are about to delete your account. This action is not reversable. Are you sure you want to proceed?</string>
+    <string name="delete_dialog_message">You are about to delete your account. This action is not reversible. Are you sure you want to proceed?</string>
     <string name="delete">Delete</string>
     <string name="prompt_title">Title</string>
     <string name="prompt_description">Description</string>
