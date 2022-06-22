@@ -40,7 +40,7 @@
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/games_list_item.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/font/rubik.xml" value="0.35794871794871796" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/font/rubik_medium.xml" value="0.3074074074074074" />
-        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_home.xml" value="0.16210739614994935" />
+        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_login1.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_main.xml" value="0.16210739614994935" />
@@ -71,6 +71,7 @@
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/games_list_fragment.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/games_list_item.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/lobby_list_item.xml" value="0.33" />
+        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/menu/bottom_menu.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/xml/account_preferences.xml" value="0.2971014492753623" />
       </map>
     </option>

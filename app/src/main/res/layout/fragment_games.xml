@@ -15,10 +15,6 @@
         android:layout_height="match_parent"
         tools:context=".fragments.games.GamesFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
@@ -70,8 +66,6 @@
                 app:gamesData="@{viewModel.games}"
                 tools:itemCount="16"
                 tools:listitem="@layout/games_list_item" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--    <TextView-->
         <!--        android:id="@+id/test_text"-->
