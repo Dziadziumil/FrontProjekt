@@ -25,7 +25,9 @@ enum class ResponseCodes(val code: Int) {
 
 enum class HttpMethod(val method: String) {
     POST("POST"),
-    PUT("PUT")
+    PUT("PUT"),
+    GET("GET"),
+    DELETE("DELETE")
 }
 
 
@@ -77,113 +79,188 @@ sealed class ApiClient<Req : RequestModels.BaseModel, Rsp> {
         thread {
             val url = "https://${Configs.serverIp}/api/$apiUrl"
             println(url)
+            val json = if (requestBody != null)
+                Json.encodeToString<RequestModels.BaseModel>(requestBody).replace(regex, "")
+                else null
 
-            val request = if (requestBody == null) {
-                if (useToken) {
-                    Request.Builder()
-                        .url(url)
-                        .header("Authorization", "Bearer ${accService.getCurrentAccountToken()}")
-                        .build()
-                } else {
-                    Request.Builder()
-                        .url(url)
-                        .build()
-                }
-            } else {
-                val json =
-                    Json.encodeToString<RequestModels.BaseModel>(requestBody).replace(regex, "")
-                println(json)
-                when (annotation.method) {
-                    HttpMethod.POST -> {
-                        if (useToken) {
-                            Request.Builder()
-                                .url(url)
-                                .header(
-                                    "Authorization",
-                                    "Bearer ${accService.getCurrentAccountToken()}"
-                                )
-                                .post(
-                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
-                                )
-                                .build()
-                        } else {
-                            Request.Builder()
-                                .url(url)
-                                .post(
-                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
-                                )
-                                .build()
-                        }
-                    }
-                    HttpMethod.PUT -> {
-                        if (useToken) {
-                            Request.Builder()
-                                .url(url)
-                                .header(
-                                    "Authorization",
-                                    "Bearer ${accService.getCurrentAccountToken()}"
-                                )
-                                .put(
-                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
-                                )
-                                .build()
-                        } else {
-                            Request.Builder()
-                                .url(url)
-                                .put(
-                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
-                                )
-                                .build()
-                        }
+            val request = when (annotation.method) {
+                HttpMethod.GET -> {
+                    if (useToken) {
+                        Request.Builder()
+                            .url(url)
+                            .header("Authorization", "Bearer ${accService.getCurrentAccountToken()}")
+                            .build()
+                    } else {
+                        Request.Builder()
+                            .url(url)
+                            .build()
                     }
                 }
-
-
+                HttpMethod.POST -> json?.let {
+                    if (useToken) {
+                        Request.Builder()
+                            .url(url)
+                            .header(
+                                "Authorization",
+                                "Bearer ${accService.getCurrentAccountToken()}"
+                            )
+                            .post(
+                                json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+                            )
+                            .build()
+                    } else {
+                        Request.Builder()
+                            .url(url)
+                            .post(
+                                json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+                            )
+                            .build()
+                    }
+                }
+                HttpMethod.PUT -> json?.let {
+                    if (useToken) {
+                        Request.Builder()
+                            .url(url)
+                            .header(
+                                "Authorization",
+                                "Bearer ${accService.getCurrentAccountToken()}"
+                            )
+                            .put(
+                                json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+                            )
+                            .build()
+                    } else {
+                        Request.Builder()
+                            .url(url)
+                            .put(
+                                json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+                            )
+                            .build()
+                    }
+                }
+                HttpMethod.DELETE -> {
+                    if (useToken) {
+                        Request.Builder()
+                            .url(url)
+                            .header("Authorization", "Bearer ${accService.getCurrentAccountToken()}")
+                            .delete()
+                            .build()
+                    } else {
+                        Request.Builder()
+                            .url(url)
+                            .delete()
+                            .build()
+                    }
+                }
             }
+
+//            val request = if (requestBody == null) {
+//                if (useToken) {
+//                    Request.Builder()
+//                        .url(url)
+//                        .header("Authorization", "Bearer ${accService.getCurrentAccountToken()}")
+//                        .build()
+//                } else {
+//                    Request.Builder()
+//                        .url(url)
+//                        .build()
+//                }
+//            } else {
+//                val json =
+//                    Json.encodeToString<RequestModels.BaseModel>(requestBody).replace(regex, "")
+//                println(json)
+//                when (annotation.method) {
+//                    HttpMethod.POST -> {
+//                        if (useToken) {
+//                            Request.Builder()
+//                                .url(url)
+//                                .header(
+//                                    "Authorization",
+//                                    "Bearer ${accService.getCurrentAccountToken()}"
+//                                )
+//                                .post(
+//                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+//                                )
+//                                .build()
+//                        } else {
+//                            Request.Builder()
+//                                .url(url)
+//                                .post(
+//                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+//                                )
+//                                .build()
+//                        }
+//                    }
+//                    HttpMethod.PUT -> {
+//                        if (useToken) {
+//                            Request.Builder()
+//                                .url(url)
+//                                .header(
+//                                    "Authorization",
+//                                    "Bearer ${accService.getCurrentAccountToken()}"
+//                                )
+//                                .put(
+//                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+//                                )
+//                                .build()
+//                        } else {
+//                            Request.Builder()
+//                                .url(url)
+//                                .put(
+//                                    json.toRequestBody(MEDIA_TYPE_MARKDOWN)
+//                                )
+//                                .build()
+//                        }
+//                    }
+//                }
+//            }
+
             println("request: $request")
             val client = OkHttpClient()
 
-            client.newCall(request).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
-                    println("exception happened ${e.message}")
-                    event.listener.onMessage(false, null)
+            if (request != null) {
+                client.newCall(request).enqueue(object : Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        println("exception happened ${e.message}")
+                        event.listener.onMessage(false, null)
 
-                }
-
-                override fun onResponse(call: Call, response: Response) {
-                    val result = try {
-                        when (response.code) {
-                            ResponseCodes.OK.code -> {
-                                val rsp = response.body!!.string()
-                                val json = Json {
-                                    ignoreUnknownKeys = true
-                                    isLenient = true
-                                    prettyPrint = false
-                                    allowStructuredMapKeys = true
-                                }
-                                println("got response: $rsp")
-                                responseSerializer?.let {
-                                    Pair(
-                                        true,
-                                        json.decodeFromString(responseSerializer, rsp) as Rsp?
-                                    )
-
-                                } ?: Pair(true, null)
-                            }
-                            else -> {
-                                println("got error: ${response.body!!.string()}")
-                                null
-                            }
-                        }
-
-                    } catch (e: Exception) {
-                        println("IT DIDN'T WORK ${e.message}")
-                        null
                     }
-                    event.listener.onMessage(result?.first ?: false, result?.second)
+
+                    override fun onResponse(call: Call, response: Response) {
+                        val result = try {
+                            when (response.code) {
+                                ResponseCodes.OK.code -> {
+                                    val rsp = response.body!!.string()
+                                    val json = Json {
+                                        ignoreUnknownKeys = true
+                                        isLenient = true
+                                        prettyPrint = false
+                                        allowStructuredMapKeys = true
+                                    }
+                                    println("got response: $rsp")
+                                    responseSerializer?.let {
+                                        Pair(
+                                            true,
+                                            json.decodeFromString(responseSerializer, rsp) as Rsp?
+                                        )
+
+                                    } ?: Pair(true, null)
+                                }
+                                else -> {
+                                    println("got error: ${response.body!!.string()}")
+                                    null
+                                }
+                            }
+
+                        } catch (e: Exception) {
+                            println("IT DIDN'T WORK ${e.message}")
+                            null
+                        }
+                        event.listener.onMessage(result?.first ?: false, result?.second)
+                    }
                 }
+                )
             }
-            )
 
         }
 
