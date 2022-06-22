@@ -30,6 +30,13 @@ sealed class HttpGet {
         ApiClient<Nothing, ResponseModels.LoobiesList>(
             ResponseModels.LoobiesList::class
         )
+
+    @Api("Lobby/ownerId", HttpMethod.GET)
+    @UseId
+    object GetMyLobbies :
+        ApiClient<Nothing, ResponseModels.LoobiesList>(
+            ResponseModels.LoobiesList::class
+        )
 }
 
 sealed class HttpDelete {

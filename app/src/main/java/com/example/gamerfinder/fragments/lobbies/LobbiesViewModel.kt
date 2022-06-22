@@ -27,4 +27,20 @@ class LobbiesViewModel(application: Application) : AndroidViewModel(application)
             }))
         }.requestGet(context, gameId.toString())
     }
+
+    fun getMyLobbies(context: Context) {
+        HttpGet.GetMyLobbies.apply {
+            this.addListener(HttpListener(object : Action<ResponseModels.LoobiesList> {
+                override fun onMessage(isSuccess: Boolean, value: ResponseModels.LoobiesList?) {
+                    if(isSuccess) {
+                        value?.let {
+                            _lobbies.postValue(value.lobbies!!)
+                        }
+                    } else {
+                        println("couldn't get lobbies")
+                    }
+                }
+            }))
+        }.requestGet(context, AccountService(context).getCurrentUserId())
+    }
 }
