@@ -41,7 +41,7 @@ class LobbyItemAdapter : ListAdapter<Lobby, LobbyItemAdapter.LobbyViewHolder>(Di
         }
 
         override fun areContentsTheSame(oldItem: Lobby, newItem: Lobby): Boolean {
-            return oldItem.tittle == newItem.tittle && oldItem.ownerId == newItem.ownerId
+            return oldItem.title == newItem.title && oldItem.ownerId == newItem.ownerId
         }
 
     }

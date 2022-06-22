@@ -1,5 +1,7 @@
 package com.example.gamerfinder.fragments.profile
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,13 +11,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import com.example.gamerfinder.HomeActivity
 import com.example.gamerfinder.MainActivity
 import com.example.gamerfinder.R
 import com.example.gamerfinder.activities.loginactivity.LoginResult
 import com.example.gamerfinder.databinding.FragmentMyProfileBinding
-import com.example.gamerfinder.utils.AccountService
+import com.example.gamerfinder.ui.login.afterTextChanged
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+
+const val DELETE = "DELETE"
 
 class MyProfileFragment : Fragment() {
 
@@ -65,6 +70,23 @@ class MyProfileFragment : Fragment() {
             }
         }
 
+        sharedViewModel.deleteAccountResult.observe(viewLifecycleOwner) {
+            when(it) {
+                is LoginResult.Success -> {
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    requireContext().startActivity(intent)
+                }
+                is LoginResult.Error -> {
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Something went wrong")
+                        .setMessage("Couldn't delete your account. Try again later")
+                        .setNeutralButton("OK", null)
+                        .show()
+                }
+            }
+        }
+
         sharedViewModel.user.observe(viewLifecycleOwner) {
             binding.usernameEditText.setText(it.userName)
             binding.firstnameEditText.setText(it.firstName)
@@ -85,22 +107,31 @@ class MyProfileFragment : Fragment() {
         }
 
         binding.deleteButton.setOnClickListener {
-            MaterialAlertDialogBuilder(requireContext())
+            val alertView = layoutInflater.inflate(R.layout.delete_alert, null)
+            val text = alertView.findViewById<TextInputEditText>(R.id.delete_prompt_edit_text)
+            val textLayout = alertView.findViewById<TextInputLayout>(R.id.delete_prompt_layout)
+            text.afterTextChanged {
+                textLayout.error = null
+            }
+            val dialog = MaterialAlertDialogBuilder(requireContext())
                 .setTitle(getString(R.string.delete_dialog_title))
                 .setMessage(getString(R.string.delete_dialog_message))
-                .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-                    dialog.cancel()
-                }
-                .setPositiveButton(getString(R.string.delete)) { _, _ ->
+                .setView(alertView)
+                .setNegativeButton(getString(R.string.cancel), null)
+                .setPositiveButton(getString(R.string.delete), null)
+                .show();
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                if (text.text.toString() != binding.usernameEditText.text.toString()) {
+                    textLayout.error = "Wrong username"
+                } else {
+                    println("should delete")
                     sharedViewModel.deleteAccount(requireContext())
+                    dialog.dismiss()
                 }
-                .show()
+            }
         }
 
         binding.logoutButton.setOnClickListener {
-            //todo might need to remove user and token from account manager
-            // but didn't figure out how yet
-            //AccountService().de
             val intent = Intent(context, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             requireContext().startActivity(intent)

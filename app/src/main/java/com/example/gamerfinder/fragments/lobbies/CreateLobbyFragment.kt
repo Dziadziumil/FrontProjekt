@@ -64,11 +64,6 @@ class CreateLobbyFragment : Fragment() {
 
         viewModel.createLobbyResult.observe(viewLifecycleOwner) {
             when (it) {
-                /*is LobbyCreateResult.Error -> Toast.makeText(
-                    requireContext(),
-                    it.toString(),
-                    Toast.LENGTH_SHORT
-                ).show()*/
                 is LobbyCreateResult.Error -> MaterialAlertDialogBuilder(requireActivity())
                     .setTitle("Alert")
                     .setMessage("An error occurred. The lobby has not been created.")
@@ -77,11 +72,6 @@ class CreateLobbyFragment : Fragment() {
                 is LobbyCreateResult.Success -> {
                     val action = CreateLobbyFragmentDirections.actionCreateLobbyFragmentToLobbiesFragment(gameId!!, gameName)
                     findNavController().navigate(action)
-                    /*Toast.makeText(
-                        requireContext(),
-                        it.toString(),
-                        Toast.LENGTH_SHORT
-                    ).show()*/
                     MaterialAlertDialogBuilder(requireActivity())
                         .setTitle("Alert")
                         .setMessage("New lobby successfully created!")

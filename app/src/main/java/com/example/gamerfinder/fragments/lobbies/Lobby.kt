@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Lobby(
     val id: Int?,
-    val tittle: String?,
+    val title: String?,
     val gameId: Int?,
     val ownerId: Int?,
     val description: String?,
@@ -13,6 +13,6 @@ data class Lobby(
     val currentUsers: Int?
 ) {
     override fun toString(): String {
-        return "Lobby(id=$id, title=$tittle, gameId=$gameId, ownerId=$ownerId, description=$description, maxUser=$maxUser, currentUsers=$currentUsers)"
+        return "Lobby(id=$id, title=$title, gameId=$gameId, ownerId=$ownerId, description=$description, maxUser=$maxUser, currentUsers=$currentUsers)"
     }
 }

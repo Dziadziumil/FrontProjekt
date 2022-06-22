@@ -27,6 +27,9 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     private val _passwordUpdateResult = MutableLiveData<LoginResult<Nothing>?>()
     val passwordUpdateResult: LiveData<LoginResult<Nothing>?> = _passwordUpdateResult
 
+    private val _deleteAccountResult = MutableLiveData<LoginResult<Nothing>>()
+    val deleteAccountResult: LiveData<LoginResult<Nothing>> = _deleteAccountResult
+
     fun getUserData(context: Context) {
         HttpGet.GetUser.apply {
             this.addListener(HttpListener(object : Action<ResponseModels.UserFull> {
@@ -102,7 +105,18 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun deleteAccount(context: Context) {
-        Toast.makeText(context, "deleting account", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "deleting", Toast.LENGTH_SHORT).show()
+        HttpDelete.DeleteUser.apply {
+            this.addListener(HttpListener(object : Action<Nothing> {
+                override fun onMessage(isSuccess: Boolean, value: Nothing?) {
+                    if(isSuccess) {
+                        _deleteAccountResult.postValue(LoginResult.Success(null))
+                    } else {
+                        _deleteAccountResult.postValue(LoginResult.Error("couldn't delete account"))
+                    }
+                }
+            }))
+        }.requestGet(context, AccountService(context).getCurrentUserId())
     }
 
     private fun hashPassword(password: String): String {

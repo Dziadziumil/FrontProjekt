@@ -27,7 +27,7 @@
                 android:id="@+id/lobby_title_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{lobby.tittle}"
+                android:text="@{lobby.title}"
                 android:padding="8dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/users_text"
