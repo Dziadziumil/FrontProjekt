@@ -48,6 +48,11 @@ class GamesFragment : Fragment() {
             view.findNavController().navigate(action);
         }
 
+        binding.buttonToSearch.setOnClickListener {
+            val action = GamesFragmentDirections.actionGamesListFragmentToMyLobbiesFragment()
+            view.findNavController().navigate(action)
+        }
+
         viewModel.games.observe(viewLifecycleOwner) {
             println(it)
         }

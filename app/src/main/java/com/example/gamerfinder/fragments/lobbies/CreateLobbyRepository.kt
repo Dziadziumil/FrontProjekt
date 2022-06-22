@@ -30,7 +30,7 @@ class CreateLobbyRepository {
             RequestModels.CreateLobbyRequest(
                 gameId = gameId,
                 ownerId = AccountService(context).getCurrentUserId().toInt(),
-                tittle = title,
+                title = title,
                 description = description,
                 maxUser = maxUser
             ), context

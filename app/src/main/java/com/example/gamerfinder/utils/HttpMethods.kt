@@ -10,31 +10,48 @@ sealed class HttpGet {
       object UsersGet :
           ApiClient(requestClass = null, ListSerializer(ResponseModels.UserFull.serializer()))
   */
-    @Api("Users")
+    @Api("Users", HttpMethod.GET)
     @UseId
+    @UseToken
     object GetUser :
         ApiClient<Nothing, ResponseModels.UserFull>(
             ResponseModels.UserFull::class,
         )
 
-    @Api("GameDictionaries")
+    @Api("GameDictionaries", HttpMethod.GET)
     object GetGames :
         ApiClient<Nothing, ResponseModels.GamesList>(
             ResponseModels.GamesList::class,
         )
 
-    @Api("Lobbies")
+    @Api("Lobbies", HttpMethod.GET)
     @UseId
     object GetLobbies :
-            ApiClient<Nothing, ResponseModels.LoobiesList>(
-                ResponseModels.LoobiesList::class
+        ApiClient<Nothing, ResponseModels.LoobiesList>(
+            ResponseModels.LoobiesList::class
+        )
+
+    @Api("Lobby/ownerId", HttpMethod.GET)
+    @UseId
+    object GetMyLobbies :
+        ApiClient<Nothing, ResponseModels.LoobiesList>(
+            ResponseModels.LoobiesList::class
+        )
+}
+
+sealed class HttpDelete {
+    @Api("Users", HttpMethod.DELETE)
+    @UseId
+    object DeleteUser :
+            ApiClient<Nothing, Nothing>(
+                null
             )
 }
 
 sealed class HttpPut {
     @Api("Users", HttpMethod.PUT)
     @UseId
-    //@UseToken
+    @UseToken
     object UpdateUser :
         ApiClient<RequestModels.UserData, Nothing>(
             null,
@@ -42,6 +59,7 @@ sealed class HttpPut {
 
     @Api("Users/password", HttpMethod.PUT)
     @UseId
+    @UseToken
     object UpdatePassword :
         ApiClient<RequestModels.UpdatePasswordRequest, Nothing>(
             null,
@@ -51,6 +69,7 @@ sealed class HttpPut {
 sealed class HttpPost {
 
     @Api("Lobbies")
+    @UseToken
     object CreateLobbyPost :
         ApiClient<RequestModels.CreateLobbyRequest, ResponseModels.CreatedLobby>(
             ResponseModels.CreatedLobby::class

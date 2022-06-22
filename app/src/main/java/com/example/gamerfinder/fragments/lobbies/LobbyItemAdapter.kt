@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamerfinder.databinding.LobbyListItemBinding
-import com.example.gamerfinder.fragments.games.GameItemAdapter
+import com.example.gamerfinder.utils.AccountService
 
 class LobbyItemAdapter : ListAdapter<Lobby, LobbyItemAdapter.LobbyViewHolder>(DiffCallback) {
 
@@ -15,6 +15,9 @@ class LobbyItemAdapter : ListAdapter<Lobby, LobbyItemAdapter.LobbyViewHolder>(Di
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(lobby: Lobby) {
             binding.lobby = lobby
+            if(AccountService(binding.root.context).getCurrentUserId().toInt() == lobby.ownerId) {
+                binding.joinButton.isEnabled = false
+            }
             binding.executePendingBindings()
         }
     }
@@ -41,7 +44,7 @@ class LobbyItemAdapter : ListAdapter<Lobby, LobbyItemAdapter.LobbyViewHolder>(Di
         }
 
         override fun areContentsTheSame(oldItem: Lobby, newItem: Lobby): Boolean {
-            return oldItem.tittle == newItem.tittle && oldItem.ownerId == newItem.ownerId
+            return oldItem.title == newItem.title && oldItem.ownerId == newItem.ownerId
         }
 
     }

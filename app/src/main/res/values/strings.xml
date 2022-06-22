@@ -64,4 +64,9 @@
     <string name="prompt_lobby_size">Lobby size</string>
     <string name="create">Create</string>
     <string name="join">Join</string>
+    <string name="type_delete">Type your username</string>
+    <string name="my_lobbies">My Lobbies</string>
+    <string name="menu_games">Games</string>
+    <string name="menu_mylobbies">MyLobbies</string>
+    <string name="menu_profile">Profile</string>
 </resources>

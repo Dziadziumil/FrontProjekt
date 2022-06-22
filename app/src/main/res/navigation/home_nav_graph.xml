@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_gamesListFragment_to_lobbiesFragment"
             app:destination="@id/lobbiesFragment" />
+        <action
+            android:id="@+id/action_gamesListFragment_to_myLobbiesFragment"
+            app:destination="@id/myLobbiesFragment" />
     </fragment>
     <fragment
         android:id="@+id/createLobbyFragment"
@@ -91,4 +94,8 @@
             app:enterAnim="@anim/slide_up_in"
             app:popExitAnim="@anim/slide_down_out" />
     </fragment>
+    <fragment
+        android:id="@+id/myLobbiesFragment"
+        android:name="com.example.gamerfinder.fragments.lobbies.MyLobbiesFragment"
+        android:label="MyLobbiesFragment" />
 </navigation>

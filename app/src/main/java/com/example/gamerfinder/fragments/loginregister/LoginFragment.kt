@@ -13,7 +13,6 @@ import com.example.gamerfinder.HomeActivity
 import com.example.gamerfinder.R
 import com.example.gamerfinder.activities.loginactivity.LoginResult
 import com.example.gamerfinder.activities.loginactivity.LoginViewModel
-import com.example.gamerfinder.utils.UserPreferences
 import com.example.gamerfinder.databinding.FragmentLoginBinding
 import com.example.gamerfinder.ui.login.afterTextChanged
 import com.example.gamerfinder.utils.*
@@ -56,11 +55,6 @@ class LoginFragment : Fragment() {
             viewModel.login(username.text.toString(), password.text.toString(), requireContext())
         }
 
-
-        //_authToken = userPreferences.authToken
-        //if(authToken != null)
-        //Toast.makeText(context, authToken, Toast.LENGTH_SHORT).show()
-
         binding.testButton.setOnClickListener {
             val post = HttpPost.AuthenticatePost
             post.addListener(HttpListener(object : Action<ResponseModels.AuthResponse> {
@@ -98,10 +92,9 @@ class LoginFragment : Fragment() {
             when (it) {
                 is LoginResult.Success -> {
                     AccountService(requireContext()).let { service ->
-                        service.addAccount(it.value?.id!!)//it.value.id!!)
+                        service.addAccount(it.value?.id!!)
                         service.setCurrentAccountToken(it.value.token!!)
                     }
-
                     handleLoginSuccess()
                 }
                 is LoginResult.Error -> {
