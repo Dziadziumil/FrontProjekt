@@ -6,6 +6,7 @@ import com.example.gamerfinder.fragments.games.Game
 import com.example.gamerfinder.fragments.games.GameItemAdapter
 import com.example.gamerfinder.fragments.lobbies.Lobby
 import com.example.gamerfinder.fragments.lobbies.LobbyItemAdapter
+import com.example.gamerfinder.fragments.lobbies.UsernameItemAdapter
 
 //@BindingAdapter("gameName")
 //fun setGameName() {
@@ -22,5 +23,11 @@ fun bindRecyclerView(recyclerView: RecyclerView,
 @BindingAdapter("lobbiesData")
 fun bindRecyclerView2(recyclerView: RecyclerView, data: List<Lobby>?) {
     val adapter = recyclerView.adapter as LobbyItemAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("usernames")
+fun bindRecyclerView3(recyclerView: RecyclerView, data: List<String>?) {
+    val adapter = recyclerView.adapter as UsernameItemAdapter
     adapter.submitList(data)
 }

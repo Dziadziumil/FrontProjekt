@@ -83,6 +83,33 @@ sealed class ResponseModels {
     data class LoobiesList(
         val lobbies: List<Lobby>?
     )
+
+    @Serializable
+    data class LobbyResponse(
+        val usersName: List<String>,
+        val id: Int,
+        val title: String,
+        val gameId: Int,
+        val ownerId: Int,
+        val description: String,
+        val maxUser: Int,
+        val currentUsers: Int
+    ) {
+        override fun toString(): String {
+            return "LobbyResponse(usersName=$usersName, id=$id, title='$title', gameId=$gameId, ownerId=$ownerId, description='$description', maxUser=$maxUser, currentUsers=$currentUsers)"
+        }
+    }
+
+    @Serializable
+    data class UsersInLobbies(
+        val id: Int,
+        val userId: Int,
+        val lobbyId: Int
+    ) {
+        override fun toString(): String {
+            return "UsersInLobbies(id=$id, userId=$userId, lobbyId=$lobbyId)"
+        }
+    }
 }
 
 //@Serializable
@@ -150,6 +177,12 @@ class RequestModels {
             return "CreateLobbyRequest(title=$title, gameId=$gameId, ownerId=$ownerId, description=$description, maxUser=$maxUser)"
         }
     }
+
+    @Serializable
+    data class JoinLobbyRequest(
+        val userId: Int,
+        val lobbyId: Int
+    ) : BaseModel()
 
 
     @Serializable

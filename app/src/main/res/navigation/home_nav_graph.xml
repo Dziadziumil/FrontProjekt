@@ -16,9 +16,6 @@
         <action
             android:id="@+id/action_myProfileFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
-        <action
-            android:id="@+id/action_myProfileFragment_to_gamesListFragment"
-            app:destination="@id/gamesListFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileEditFragment"
@@ -49,14 +46,8 @@
         android:label="fragment_games_list"
         tools:layout="@layout/fragment_games" >
         <action
-            android:id="@+id/action_gamesListFragment_to_myProfileFragment"
-            app:destination="@id/myProfileFragment" />
-        <action
             android:id="@+id/action_gamesListFragment_to_lobbiesFragment"
             app:destination="@id/lobbiesFragment" />
-        <action
-            android:id="@+id/action_gamesListFragment_to_myLobbiesFragment"
-            app:destination="@id/myLobbiesFragment" />
     </fragment>
     <fragment
         android:id="@+id/createLobbyFragment"
@@ -93,9 +84,28 @@
             app:destination="@id/createLobbyFragment"
             app:enterAnim="@anim/slide_up_in"
             app:popExitAnim="@anim/slide_down_out" />
+        <action
+            android:id="@+id/action_lobbiesFragment_to_lobbyFragment"
+            app:destination="@id/lobbyFragment" />
     </fragment>
     <fragment
         android:id="@+id/myLobbiesFragment"
         android:name="com.example.gamerfinder.fragments.lobbies.MyLobbiesFragment"
-        android:label="MyLobbiesFragment" />
+        android:label="MyLobbiesFragment" >
+        <action
+            android:id="@+id/action_myLobbiesFragment_to_lobbyFragment"
+            app:destination="@id/lobbyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lobbyFragment"
+        android:name="com.example.gamerfinder.fragments.lobbies.LobbyFragment"
+        android:label="fragment_lobby"
+        tools:layout="@layout/fragment_lobby" >
+        <argument
+            android:name="lobbyId"
+            app:argType="integer" />
+        <argument
+            android:name="isInLobby"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

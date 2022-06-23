@@ -6,17 +6,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamerfinder.databinding.LobbyListItemBinding
-import com.example.gamerfinder.utils.AccountService
 
-class LobbyItemAdapter : ListAdapter<Lobby, LobbyItemAdapter.LobbyViewHolder>(DiffCallback) {
+class LobbyItemAdapter(private val OnJoin: (Lobby) -> Unit) : ListAdapter<Lobby, LobbyItemAdapter.LobbyViewHolder>(DiffCallback) {
 
     class LobbyViewHolder(
-        private var binding: LobbyListItemBinding
+        private var binding: LobbyListItemBinding,
+        private val OnJoin: (Lobby) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(lobby: Lobby) {
             binding.lobby = lobby
-            if(AccountService(binding.root.context).getCurrentUserId().toInt() == lobby.ownerId) {
-                binding.joinButton.isEnabled = false
+            binding.joinButton.setOnClickListener {
+//                val action = LobbiesFragmentDirections.actionLobbiesFragmentToLobbyFragment(lobby.id)
+//                itemView.findNavController().navigate(action)
+                OnJoin.invoke(lobby)
             }
             binding.executePendingBindings()
         }
@@ -29,7 +31,8 @@ class LobbyItemAdapter : ListAdapter<Lobby, LobbyItemAdapter.LobbyViewHolder>(Di
         return LobbyViewHolder(
             LobbyListItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
-            )
+            ),
+            OnJoin
         )
     }
 

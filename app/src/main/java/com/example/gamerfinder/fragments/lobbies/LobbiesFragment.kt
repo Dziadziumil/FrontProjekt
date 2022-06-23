@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.gamerfinder.R
 import com.example.gamerfinder.databinding.FragmentLobbiesBinding
@@ -31,6 +32,7 @@ class LobbiesFragment : Fragment() {
             gameName = it.getString(GAME_NAME).toString()
         }
         gameId?.let { viewModel.getLobbies(it, requireContext()) }
+        viewModel.getUsersInLobbies(requireContext())
     }
 
     override fun onCreateView(
@@ -41,7 +43,11 @@ class LobbiesFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        binding.lobbiesRecyclerView.adapter = LobbyItemAdapter()
+        binding.lobbiesRecyclerView.adapter = LobbyItemAdapter {
+            val isInLobby = viewModel.isInLobby(it.id, requireContext())
+            val action = LobbiesFragmentDirections.actionLobbiesFragmentToLobbyFragment(it.id, isInLobby)
+            binding.root.findNavController().navigate(action)
+        }
         binding.fragmentTitle.text = gameName
 
         return binding.root
@@ -57,13 +63,8 @@ class LobbiesFragment : Fragment() {
         }
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(gameId: Int) =
-            LobbiesFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(GAME_ID, gameId)
-                }
-            }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

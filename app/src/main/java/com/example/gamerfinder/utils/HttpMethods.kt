@@ -1,5 +1,8 @@
 package com.example.gamerfinder.utils
 
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
+
 sealed class HttpGet {
     /*  @Api("tests")
       object TestsGet :
@@ -37,11 +40,25 @@ sealed class HttpGet {
         ApiClient<Nothing, ResponseModels.LoobiesList>(
             ResponseModels.LoobiesList::class
         )
+
+    @Api("Lobby", HttpMethod.GET)
+    @UseId
+    object GetLobby :
+        ApiClient<Nothing, ResponseModels.LobbyResponse>(
+            ResponseModels.LobbyResponse::class
+        )
+
+    @Api("UserInLobbies", HttpMethod.GET)
+    object GetUsersInLobbies :
+        ApiClient<Nothing, List<ResponseModels.UsersInLobbies>>(
+            ListSerializer(ResponseModels.UsersInLobbies.serializer())
+        )
 }
 
 sealed class HttpDelete {
     @Api("Users", HttpMethod.DELETE)
     @UseId
+    @UseToken
     object DeleteUser :
             ApiClient<Nothing, Nothing>(
                 null
@@ -88,5 +105,10 @@ sealed class HttpPost {
             ResponseModels.IdToken::class,
         )
 
+    @Api("UserInLobbies")
+    object JoinLobby :
+        ApiClient<RequestModels.JoinLobbyRequest, ResponseModels.LobbyResponse>(
+            ResponseModels.LobbyResponse::class
+        )
 
 }
