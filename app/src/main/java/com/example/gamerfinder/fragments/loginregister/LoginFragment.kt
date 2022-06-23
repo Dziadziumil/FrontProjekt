@@ -55,26 +55,6 @@ class LoginFragment : Fragment() {
             viewModel.login(username.text.toString(), password.text.toString(), requireContext())
         }
 
-        binding.testButton.setOnClickListener {
-            val post = HttpPost.AuthenticatePost
-            post.addListener(HttpListener(object : Action<ResponseModels.AuthResponse> {
-                override fun onMessage(isSuccess: Boolean, value: ResponseModels.AuthResponse?) {
-                    Looper.prepare()
-                    val toast = Toast.makeText(
-                        context,
-                        "got a result $isSuccess of: $value",
-                        Toast.LENGTH_SHORT
-                    )
-                    toast.show()
-                    println(value)
-                    Looper.loop()
-                }
-            }))
-
-            println("sending request")
-            post.requestPost(RequestModels.AuthRequest("string", "string"), requireContext())
-        }
-
         viewModel.loginStatus.observe(viewLifecycleOwner) {
             if (it.usernameError != null) {
                 binding.usernameLayout.error = getString(it.usernameError)
@@ -102,10 +82,6 @@ class LoginFragment : Fragment() {
                     binding.passwordLayout.error = getString(R.string.login_error)
                 }
             }
-        }
-
-        binding.gotoHomeActivity.setOnClickListener {
-            handleLoginSuccess()
         }
     }
 

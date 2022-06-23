@@ -13,59 +13,35 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.games.GamesFragment">
+        tools:context=".fragments.games.GamesFragment"
+        android:paddingHorizontal="8dp"
+        >
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/md_theme_dark_inversePrimary"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:id="@+id/fragment_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pick_a_game"
+            android:padding="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textColor="?attr/colorOnSurface"
+            />
 
-                <Button
-                    android:id="@+id/button13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:icon="@drawable/ic_baseline_star_24"
-                    android:background="@color/md_theme_dark_background"
-                    app:iconGravity="textEnd"
-                    app:iconSize="45dp" />
-
-                <Button
-                    android:id="@+id/buttonToSearch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:icon="@drawable/ic_baseline_search_24"
-                    app:iconGravity="textEnd"
-                    app:iconSize="45dp" />
-
-                <Button
-                    android:id="@+id/button_to_my_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:icon="@drawable/ic_baseline_person_24"
-                    app:iconGravity="textEnd"
-                    app:iconSize="45dp" />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/games_recycler_view"
-                android:layout_width="342dp"
-                android:layout_height="425dp"
-                android:clipToPadding="false"
-                android:scrollbars="vertical"
-                app:layoutManager="LinearLayoutManager"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:gamesData="@{viewModel.games}"
-                tools:itemCount="16"
-                tools:listitem="@layout/games_list_item" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/games_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_title"
+            app:gamesData="@{viewModel.games}"
+            tools:itemCount="16"
+            tools:listitem="@layout/games_list_item" />
 
         <!--    <TextView-->
         <!--        android:id="@+id/test_text"-->

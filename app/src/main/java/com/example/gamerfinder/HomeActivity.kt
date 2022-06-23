@@ -25,6 +25,10 @@ class HomeActivity : AppCompatActivity() {
         val bottomNavBar = binding.bottomNavBar
 
         bottomNavBar.setupWithNavController(navController)
+
+        bottomNavBar.setOnItemReselectedListener { item ->
+            navController.popBackStack(item.itemId, inclusive = false)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -92,7 +92,7 @@ class MyProfileFragment : Fragment() {
             binding.firstnameEditText.setText(it.firstName)
             binding.secondnameEditText.setText(it.secondName)
             binding.emailEditText.setText(it.email)
-            binding.birthdateEditText.setText(it.birthDate)
+            binding.birthdateEditText.setText(it.birthDate?.dropLast(9))
             binding.genderEditText.setText(it.gender)
         }
 
@@ -136,5 +136,10 @@ class MyProfileFragment : Fragment() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             requireContext().startActivity(intent)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

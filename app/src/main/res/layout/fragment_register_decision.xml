@@ -44,13 +44,13 @@
             android:layout_width="240dp"
             android:layout_height="80dp"
             android:layout_marginTop="24dp"
-            android:backgroundTint="#FFFFFF"
             android:text="I'll do it later"
-            android:textColor="#673AB7"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonYes" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonYes"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

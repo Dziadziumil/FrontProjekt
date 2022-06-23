@@ -15,7 +15,7 @@ class GameItemAdapter : ListAdapter<Game, GameItemAdapter.GameViewHolder>(DiffCa
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(game: Game) {
             binding.game = game
-            binding.button.setOnClickListener {
+            binding.gameCard.setOnClickListener {
                 //println(game.id)
                 val action = GamesFragmentDirections.actionGamesListFragmentToLobbiesFragment(gameId = game.id, gameName = game.gameName)
                 itemView.findNavController().navigate(action)

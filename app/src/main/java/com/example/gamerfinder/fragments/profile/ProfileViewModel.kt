@@ -105,7 +105,6 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun deleteAccount(context: Context) {
-        Toast.makeText(context, "deleting", Toast.LENGTH_SHORT).show()
         HttpDelete.DeleteUser.apply {
             this.addListener(HttpListener(object : Action<Nothing> {
                 override fun onMessage(isSuccess: Boolean, value: Nothing?) {

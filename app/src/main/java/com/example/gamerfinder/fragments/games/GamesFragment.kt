@@ -43,18 +43,13 @@ class GamesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonToMyProfile.setOnClickListener {
-            val action = GamesFragmentDirections.actionGamesListFragmentToMyProfileFragment()
-            view.findNavController().navigate(action);
-        }
-
-        binding.buttonToSearch.setOnClickListener {
-            val action = GamesFragmentDirections.actionGamesListFragmentToMyLobbiesFragment()
-            view.findNavController().navigate(action)
-        }
-
         viewModel.games.observe(viewLifecycleOwner) {
             println(it)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -103,7 +103,8 @@ class RegisterContinueFragment : Fragment() {
                         }-${binding.personBirth.dayOfMonth.toString().padStart(2, '0')}T00:00:00",
                         gender
                     ),
-                    requireContext()
+                    requireContext(),
+                    AccountService(requireContext()).getCurrentUserId()
                 )
             }
             else {

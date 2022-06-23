@@ -27,12 +27,14 @@
                 android:padding="@dimen/default_padding"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAppearance="?attr/textAppearanceHeadline4"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/username_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="@dimen/default_padding"
                 app:layout_constraintTop_toBottomOf="@id/app_name_text"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,25 +84,6 @@
                 app:layout_constraintTop_toBottomOf="@id/password_layout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-            <Button
-                android:id="@+id/goto_home_activity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/default_padding"
-                android:text="Go To Test Activity"
-                android:layout_marginTop="64dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/login_button" />
-
-            <Button
-                android:id="@+id/test_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/default_padding"
-                android:text="TEST"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/goto_home_activity" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
