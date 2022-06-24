@@ -12,45 +12,63 @@
         android:layout_height="match_parent"
         tools:context=".fragments.loginregister.RegisterDecisionFragment">
 
-        <TextView
-            android:id="@+id/textDecisionInfo"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Do you want to fill in the rest of the data now?"
-            android:textAlignment="center"
-            android:textSize="34sp"
+            android:background="@color/md_theme_dark_onSecondaryContainer"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/buttonYes"
-            android:layout_width="240dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="32dp"
-            android:insetLeft="0dp"
-            android:insetTop="6dp"
-            android:insetRight="0dp"
-            android:text="Sure!"
-            android:textSize="24sp"
-            app:iconPadding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textDecisionInfo" />
+            <TextView
+                android:id="@+id/textDecisionInfo"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/register_decision_text"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/buttonNo"
-            android:layout_width="240dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="24dp"
-            android:text="I'll do it later"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonYes"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            />
+            <Button
+                android:id="@+id/buttonNo"
+                android:layout_width="220dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/white"
+                android:insetLeft="0dp"
+                android:insetTop="6dp"
+                android:insetRight="0dp"
+                android:text="@string/register_decision_button_later"
+                android:textColor="@color/md_theme_light_primary"
+                android:textSize="24sp"
+                app:iconPadding="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonYes" />
+
+            <Button
+                android:id="@+id/buttonYes"
+                android:layout_width="220dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:insetLeft="0dp"
+                android:insetTop="6dp"
+                android:insetRight="0dp"
+                android:text="@string/register_decision_button_yes"
+                android:textSize="24sp"
+                app:iconPadding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textDecisionInfo" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

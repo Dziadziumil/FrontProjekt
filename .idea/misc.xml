@@ -9,9 +9,7 @@
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_register_continue.xml" value="0.33" />
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_register_decision.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_test.xml" value="0.3523550724637681" />
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_change_password.xml" value="0.3625" />
-        <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_create_lobby.xml" value="0.3523550724637681" />
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.3625" />
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_ext_profile.xml" value="0.3625" />
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_games.xml" value="0.3625" />
@@ -26,7 +24,7 @@
         <entry key="..\:/Users/PSyno/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/games_list_item.xml" value="0.3523550724637681" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.10234375" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout-w936dp/activity_login.xml" value="0.13465952563121653" />
-        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_home.xml" value="0.33106884057971014" />
+        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_home.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_home_page.xml" value="0.28351449275362317" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_login.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_main.xml" value="0.33106884057971014" />
@@ -34,15 +32,24 @@
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_profile_my_profile_edit.xml" value="0.5" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_profile_view.xml" value="0.33" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/activity_test.xml" value="0.25" />
+        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/delete_alert.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_games.xml" value="0.33106884057971014" />
+        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_lobbies.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_login.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_my_lobbies.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_my_profile.xml" value="0.33106884057971014" />
+        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_register.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_register_continue.xml" value="0.1" />
+        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_register_decision.xml" value="0.19637978142076504" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_search_games.xml" value="0.2848731884057971" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/fragment_start.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/games_list_item.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/layout/lobby_list_item.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/Piotr/AndroidStudioProjects/FrontProjekt/app/src/main/res/menu/bottom_menu.xml" value="0.1" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/font/rubik.xml" value="0.35794871794871796" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/font/rubik_medium.xml" value="0.3074074074074074" />
-        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_home.xml" value="0.33" />
+        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_home.xml" value="0.16210739614994935" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_login1.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_main.xml" value="0.16210739614994935" />
@@ -53,7 +60,6 @@
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_register_continue.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_register_decision.xml" value="0.2971014492753623" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/activity_test.xml" value="0.26268115942028986" />
-        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/delete_alert.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_change_password.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_create_lobby.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.2971014492753623" />
@@ -61,9 +67,7 @@
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_games.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_games_list.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_lobbies.xml" value="0.2971014492753623" />
-        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_lobby.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_login.xml" value="0.33" />
-        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_my_lobbies.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_my_profile.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_my_profile_edit.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/fragment_register.xml" value="0.33" />
@@ -74,8 +78,6 @@
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/games_list_fragment.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/games_list_item.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/lobby_list_item.xml" value="0.33" />
-        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/layout/username_item.xml" value="0.2971014492753623" />
-        <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/menu/bottom_menu.xml" value="0.33" />
         <entry key="..\:/Users/piotr/Desktop/projekt_zespolowy/FrontProjekt/app/src/main/res/xml/account_preferences.xml" value="0.2971014492753623" />
       </map>
     </option>

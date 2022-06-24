@@ -36,6 +36,14 @@
     <string name="birthDate_error">Must be over 13 years old</string>
     <string name="gender_error">Pick a gender</string>
 
+    <string name="register_decision_text">Do you want to fill in the rest of the data now?</string>
+    <string name="register_decision_button_yes">Yes</string>
+    <string name="register_decision_button_later">Later</string>
+
+    <string name="custom_dialog_title">Alert</string>
+    <string name="custom_dialog_info">Sorry, something went wrong.\nRegistration failed.</string>
+    <string name="custom_dialog_button">Try again</string>
+
     <string name="title_activity_profile_view">profileView</string>
     <string name="update_your_password">Update Your Password</string>
     <string name="my_account">My Account</string>
