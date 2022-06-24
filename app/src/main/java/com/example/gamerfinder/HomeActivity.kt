@@ -29,6 +29,12 @@ class HomeActivity : AppCompatActivity() {
         bottomNavBar.setOnItemReselectedListener { item ->
             navController.popBackStack(item.itemId, inclusive = false)
         }
+
+        bottomNavBar.setOnItemSelectedListener { item ->
+            true.also {
+                navController.navigate(item.itemId)
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
