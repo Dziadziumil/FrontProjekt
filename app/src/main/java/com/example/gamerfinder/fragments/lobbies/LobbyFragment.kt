@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.example.gamerfinder.R
 import com.example.gamerfinder.databinding.FragmentLobbyBinding
 
@@ -32,6 +33,7 @@ class LobbyFragment : Fragment() {
             lobbyId?.let { viewModel.getLobby(it, requireContext()) }
         } else {
             lobbyId?.let { viewModel.joinLobby(it, requireContext()) }
+            isInLobby = true
         }
     }
 
@@ -46,6 +48,14 @@ class LobbyFragment : Fragment() {
         binding.usernamesRecyclerView.adapter = UsernameItemAdapter()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.leaveButton.setOnClickListener {
+            view.findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {
